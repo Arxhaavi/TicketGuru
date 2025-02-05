@@ -22,3 +22,16 @@ Järjestelmän perustoimintoja on:
 ### **Teknologiat ja toteutusympäristö**
 Projektissa käytetään seuraavia teknologioita:
 
+- **Backend:** Java + Spring Boot
+- **REST API:** CRUD-toiminnot lippujen ja tapahtumien hallintaan.
+- **Frontend** Web-pohjainen käyttöliittymä. Esimerkiksi react/thymeleaf/JavaScript.
+- **Päälaitteet** Desktop selainpohjainen käyttöliittymä lipunmyyjille, mobiililaite optimoitu näkymä?
+
+### **Projektin lopputulos**
+Projektin valmistuttua TicketGuru järjestelmä sisältää ainakin seuraavat toiminnallisuudet:
+- Lipunmyynti ja tulostus myyntipisteessä.
+- Ovimyyntien hallinta ja lipuntarkistus.
+- Käyttäjähallinta ja oikeuksien määrittely.
+- Myyntitietojen ja tapahtumien hallinta admin-käyttäjille.
+
+Jatkossa järjestelmään voidaan lisätä verkkokauppa.
