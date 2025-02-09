@@ -35,3 +35,8 @@ Projektin valmistuttua TicketGuru järjestelmä sisältää ainakin seuraavat to
 - Myyntitietojen ja tapahtumien hallinta admin-käyttäjille.
 
 Jatkossa järjestelmään voidaan lisätä verkkokauppa.
+
+
+## Käyttöliittymät
+Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqEqrGYyHpp/TicketGuru?node-id=0-1&t=rLzlFhLt2YrBquWw-1
+
