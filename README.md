@@ -36,6 +36,32 @@ Projektin valmistuttua TicketGuru järjestelmä sisältää ainakin seuraavat to
 
 Jatkossa järjestelmään voidaan lisätä verkkokauppa.
 
+# **Järjestelmän määrittely**
+
+## **Käyttäjäryhmät ja käyttäjätarinat**  
+
+### **Lipunmyyjä**  
+- *Lipunmyyjänä* voin lisätä järjestelmään uusia tapahtumia, jotta voin myydä niihin lippuja asiakkaille.  
+- *Lipunmyyjänä* voin muokata tapahtuman tietoja, jotta voin hallinnoida tapahtuman mahdollisia muutoksia.  
+- *Lipunmyyjänä* haluan myydä lippuja, jotta yrityksemme saa liikevaihtoa.  
+- *Lipunmyyjänä* haluan tulostaa lipun asiakkaalle, jotta asiakas pääsee tapahtumaan helposti.  
+- *Lipunmyyjänä* haluan pystyä käsittelemään lippujen peruutuksia, jotta voin palauttaa asiakkaan rahat ja päivittää lipun tilan järjestelmään.  
+- *Lipunmyyjänä* haluan nähdä myyntihistorian.  
+- *Lipunmyyjänä* haluan nähdä jäljellä olevien lippujen määrän.  
+
+### **Ovimyyjä**  
+- *Ovimyyjänä* haluan saada lipun ja tapahtuman tiedot esiin.  
+- *Ovimyyjänä* haluan tulostaa jäljelle jääneet liput, jotta voin myydä ne ovella.  
+- *Ovimyyjänä* pystyn tarkistamaan lipun siinä olevasta koodista ja merkitsemään sen käytetyksi.  
+
+### **Admin**  
+- *Adminina* voin lisätä järjestelmään uusia tapahtumia, jotta voin myydä niihin lippuja asiakkaille.  
+- *Adminina* voin muokata tapahtuman tietoja, jotta voin hallinnoida tapahtuman mahdollisia muutoksia.  
+- *Adminina* haluan oikeudet tarkastella ylläpitotehtäviä varten tärkeitä asiakastietoja GDPR:ää noudattaen.  
+- *Adminina* haluan pystyä käsittelemään lippujen peruutuksia, jotta voin palauttaa asiakkaan rahat ja päivittää lipun tilan järjestelmään.  
+- *Adminina* haluan nähdä myyntihistorian.  
+- *Adminina* haluan muokata lipputyyppejä, koska niitä voi olla erilaisia eri tapahtumissa.  
+
 
 ## Käyttöliittymät
 Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqEqrGYyHpp/TicketGuru?node-id=0-1&t=rLzlFhLt2YrBquWw-1
