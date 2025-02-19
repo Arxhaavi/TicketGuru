@@ -2,7 +2,7 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Postalcode {
@@ -13,7 +13,7 @@ public class Postalcode {
     private String city;
     private String country;
 
-    @OneToOne(mappedBy = "postalcode")
+    @OneToMany(mappedBy = "postalcode")
     private Location location;
 
     public Postalcode() {
