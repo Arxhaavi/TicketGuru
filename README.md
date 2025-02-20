@@ -66,3 +66,44 @@ Jatkossa järjestelmään voidaan lisätä verkkokauppa.
 ## Käyttöliittymät
 Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqEqrGYyHpp/TicketGuru?node-id=0-1&t=rLzlFhLt2YrBquWw-1
 
+
+
+
+
+## Tietokanta
+
+**Paikka kaaviolle**
+
+
+
+### **Tietohakemisto**
+
+## SalesTransaction-taulu
+| Kenttä              | Tyyppi       | Kuvaus                             |
+|---------------------|-------------|-----------------------------------|
+| transactionId       | int PK       | Myyntitapahtuman yksilöllinen ID        |
+| customerId          | int FK       | Viittaus Customer-tauluun          |
+| paymentId           | int FK       | Viittaus Payment-tauluun            |
+| transactionTime     | datetime     | Myyntitapahtuman päivämäärä       |
+
+## Customer-taulu
+| Kenttä        | Tyyppi       | Kuvaus                           |
+|--------------|-------------|---------------------------------|
+| customerId   | int PK       | Asiakkaan yksilöllinen ID       |
+| firstName      | varchar(50)  | Asiakkaan etunimi              |
+| lastName     | varchar(50)  | Asiakkaan sukunimi             |
+| streetAddress   | varchar(50)  | Asiakkaan osoite               |
+| postalcode  | char(5)      | Viittaus Postalcode-tauluun   |
+| email        | varchar(50)  | Asiakkaan sähköpostiosoite     |
+| phoneNumber | varchar(20) | Asiakkaan puhelinnumero        |
+
+## Payment-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| paymentId      | int PK       | Maksun yksilöllinen ID           |
+| salesTransactionId | int FK  | Viittaus SalesTransaction-tauluun |
+| paymentMethod     | varchar(50)  | Maksun tapa                     |
+| paymentStatus    | varchar(50)  | Maksun tila                     |
+| paymentTime      | datetime     | Maksun päivämäärä               |
+| paymentAmount         | double       | Maksun summa                     |
+
