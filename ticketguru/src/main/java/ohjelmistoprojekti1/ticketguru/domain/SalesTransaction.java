@@ -20,7 +20,8 @@ public class SalesTransaction {
 
     private LocalDateTime transactionTime;
 
-    public SalesTransaction() {}
+    public SalesTransaction() {
+    }
 
     public Long getTransactionId() {
         return transactionId;
@@ -59,8 +60,5 @@ public class SalesTransaction {
         return "SalesTransaction [transactionId=" + transactionId + ", customer=" + customer + ", payment=" + payment
                 + ", transactionTime=" + transactionTime + "]";
     }
-
-    
-
 
 }
