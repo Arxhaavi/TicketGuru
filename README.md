@@ -107,3 +107,14 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | paymentTime      | datetime     | Maksun päivämäärä               |
 | paymentAmount         | double       | Maksun summa                     |
 
+## Event-taulu
+| Kenttä              | Tyyppi       | Kuvaus                             |
+|---------------------|-------------|-----------------------------------|
+| eventId       | int PK       | Tapahtuman yksilöllinen ID        |
+| name          | varchar(100)       | Tapahtuman nimi          |
+| description           | varchar(500)       | Tapahtuman kuvaus            |
+| startTime     | datetime     | Tapahtuman alkuaika       |
+| endTime              | datetime       | Tapahtuman loppuaika                             |
+| locationId              | int FK       | Viittaus location-tauluun                             |
+| ticketCount              | int       | Myytävien lippujen määrä                             |
+
