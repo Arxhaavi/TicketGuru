@@ -118,3 +118,18 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | locationId              | int FK       | Viittaus location-tauluun                             |
 | ticketCount              | int       | Myytävien lippujen määrä                             |
 
+## Location-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| locationId      | int PK       | Tapahtumapaikan yksilöllinen ID           |
+| name | varchar(100) | Tapahtumapaikan nimi |
+| streetAddress     | varchar(100)  | Tapahtumapaikan osoite                     |
+| postalcode    | char(5)  | Viittaus Postalcode-tauluun                     |
+| capacity      | int     | Tapahtumapaikan henkilöpaikkojen määrä               |
+
+## Postalcode-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| postalcode      | char(5) PK       | Postinumero           |
+| city | varchar(150)  | Kaupunki |
+| country     | varchar(50)  | Maa                     |
