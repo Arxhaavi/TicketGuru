@@ -148,5 +148,11 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | ticketTypeId | int PK  | Lipputyypin yksilöllinen ID |
 | ticketType     | varchar(50)  | Lipputyypin nimi                |
 
+## EventTicketTypes-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| ticketTypeId   | int PK | Lipputyypin yksilöllinen ID |
+| eventId     | int PK | Tapahtuman yksilöllinen ID |
+| price        | int   | Tapahtumaan sidotun lipputyypin hinta |
 
 
