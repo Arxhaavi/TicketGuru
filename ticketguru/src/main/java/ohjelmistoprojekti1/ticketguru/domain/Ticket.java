@@ -7,7 +7,7 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int ticketId;
+    private Long ticketId;
 
     @ManyToOne
     @JoinColumn(name = "ticket_type_id", nullable = false)
@@ -29,11 +29,11 @@ public class Ticket {
         this.ticketUsed = ticketUsed;
     }
 
-    public int getTicketId() {
+    public Long getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Long ticketId) {
         this.ticketId = ticketId;
     }
 
