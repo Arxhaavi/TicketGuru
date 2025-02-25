@@ -133,3 +133,20 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | postalcode      | char(5) PK       | Postinumero           |
 | city | varchar(150)  | Kaupunki |
 | country     | varchar(50)  | Maa                     |
+
+## Ticket-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| ticketId     | int PK       | Lipun yksilöllinen ID           |
+| ticketTypeId | int FK  | Viittaus TicketType-tauluun |
+| eventId     | int FK  | Viittaus Event-tauluun                 |
+| ticketUsed    | boolean | Kertoo, onko lippu käytetty vai ei                 |
+
+## Ticket-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| ticketTypeId | int PK  | Lipputyypin yksilöllinen ID |
+| ticketType     | varchar(50)  | Lipputyypin nimi                |
+
+
+
