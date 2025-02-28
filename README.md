@@ -243,3 +243,131 @@ tapahtuman id
   }
 
 ```
+# Luo uusi Tapahtuma
+
+
+**Metodi** : `POST`
+
+**Polku** : `/api/events`
+
+**Polkuparametrit** : -
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : 
+```json
+{
+    "name": "Super-gaala",
+    "description": "Juhlatilaisuus",
+    "startTime": "2025-06-15 18:00",
+    "endTime": "2025-06-15 21:00",
+    "location": {
+      "id": 1
+    },
+    "ticketCount": 500
+  }
+
+```
+
+**Vastauksen paluukoodi** : `201 Created` 
+
+**Vastauksen sisältö (Response body)**: 
+```json
+{
+    "id": 1,
+    "name": "Super-gaala",
+    "description": "Juhlatilaisuus",
+    "startTime": "2025-06-15 18:00",
+    "endTime": "2025-06-15 21:00",
+    "location": {
+      "id": 1
+    },
+    "ticketCount": 500
+  }
+
+```
+
+# Päivitä koko tapahtuma
+
+
+**Metodi** : `PUT`
+
+**Polku** : `/api/events/{id}`
+
+**Polkuparametrit** : {id}
+(tapahtuman id)
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : 
+```json
+{
+    "name": "Super-gaala",
+    "description": "Uudistettu kuvaus",
+    "startTime": "2025-06-15 18:00",
+    "endTime": "2025-06-15 21:00",
+    "location": {
+      "id": 1
+    },
+    "ticketCount": 500
+  }
+
+```
+
+**Vastauksen paluukoodi** : `200 OK` `404 Not found` 
+
+**Vastauksen sisältö (Response body)**: 
+```json
+{
+    "id": 1,
+    "name": "Super-gaala",
+    "description": "Uudistettu kuvaus",
+    "startTime": "2025-06-15 18:00",
+    "endTime": "2025-06-15 21:00",
+    "location": {
+      "id": 1
+    },
+    "ticketCount": 500
+}
+```
+
+# Päivitä osa tapahtumasta 
+
+
+**Metodi** : `PATCH`
+
+**Polku** : `/api/events/{id}`
+
+**Polkuparametrit** : {id}
+(tapahtuman id)
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : 
+```json
+{
+    "description": "Vuoden suurin juhlatapahtuma"
+  }
+
+```
+
+**Vastauksen paluukoodi** : `200 OK` `404 Not found` 
+
+**Vastauksen sisältö (Response body)**: -
+
+# Poista tapahtuma id:n perusteella
+
+**Metodi** : `DELETE`
+
+**Polku** : `/api/events/{id}`
+
+**Polkuparametrit** : {id}
+(tapahtuman id)
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : -
+
+**Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
+
+**Vastauksen sisältö (Response body)**: -
