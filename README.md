@@ -156,3 +156,90 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | price        | int   | Tapahtumaan sidotun lipputyypin hinta |
 
 
+# **Rajapinta**
+
+**base-URL**: https://ticketguru
+
+
+**Endpointit:**
+
+**Hae kaikki tapahtumat**
+GET /api/events
+
+**Hae tapahtuma id:n perusteella**
+GET /api/events/{id}
+
+**Luo uusi Tapahtuma**
+POST /api/events
+
+**Päivitä koko tapahtuma**
+PUT /api/events/{id}
+
+**Päivitä osa tapahtumasta**
+PATCH /api/events/{id}
+
+**Poista tapahtuma id:n perusteella**
+DELETE /api/events/{id}
+
+## Hae kaikki tapahtumat
+
+
+**Metodi** : `GET`
+
+**Polku** : `/api/events`
+
+**Polkuparametrit** : -
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : -
+
+**Vastauksen paluukoodi** : `200 OK` 
+
+**Vastauksen sisältö (Response body)**:
+```json
+{
+    "id": 1,
+    "name": "Super-gaala",
+    "description": "Juhlatilaisuus",
+    "startTime": "2025-06-15 18:00",
+    "endTime": "2025-06-15 21:00",
+    "location": {
+      "id": 1
+    },
+    "ticketCount": 500
+  }
+
+```
+## Hae tapahtuma id:n perusteella
+
+
+**Metodi** : `GET`
+
+**Polku** : `/api/events/{id}`
+
+**Polkuparametrit** : `{id}`
+tapahtuman id
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : -
+
+**Vastauksen paluukoodi** : `200 OK`, `404 Not found`
+
+**Vastauksen sisältö (Response body)**:
+
+```json
+{
+    "id": 1,
+    "name": "Super-gaala",
+    "description": "Juhlatilaisuus",
+    "startTime": "2025-06-15 18:00",
+    "endTime": "2025-06-15 21:00",
+    "location": {
+      "id": 1
+    },
+    "ticketCount": 500
+  }
+
+```
