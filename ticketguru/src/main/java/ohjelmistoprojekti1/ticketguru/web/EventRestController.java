@@ -22,4 +22,6 @@ public class EventRestController {
     public Event getEventById(@PathVariable Long id) {
         return eventRepository.findById(id).orElse(null);
     }
+
+    
 }
