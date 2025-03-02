@@ -17,12 +17,12 @@ public class EventTicketTypes {
 
     double price;
 
-    @OneToMany
-    @JoinColumn(name = "event")
+    @ManyToOne
+    @JoinColumn(name = "event_id")
     private Event event;
 
     @ManyToOne
-    @JoinColumn(name = "tickettype")
+    @JoinColumn(name = "tickettype_id")
     private TicketType tickettype;
 
     public EventTicketTypes() {
@@ -40,6 +40,14 @@ public class EventTicketTypes {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public Event getEvent() {
@@ -60,6 +68,6 @@ public class EventTicketTypes {
 
     @Override
     public String toString() {
-        return "EventTicketTypes [id=" + id + ", event=" + event + ", tickettype=" + tickettype + "]";
+        return "EventTicketTypes [id=" + id + ", price=" + price + ", event=" + event + ", tickettype=" + tickettype + "]";
     }
 }
