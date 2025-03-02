@@ -24,4 +24,8 @@ public class EventRestController {
     }
 
     
+    @PostMapping
+    public Event createEvent(@RequestBody Event event) {
+        return eventRepository.save(event);
+    }
 }
