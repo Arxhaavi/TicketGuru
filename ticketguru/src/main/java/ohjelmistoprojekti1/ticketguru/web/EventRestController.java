@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 
 import ohjelmistoprojekti1.ticketguru.domain.Event;
 import ohjelmistoprojekti1.ticketguru.domain.EventRepository;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/events")
@@ -17,5 +16,10 @@ public class EventRestController {
     @GetMapping()
     public Iterable<Event> getAllEvents() {
         return eventRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Event getEventById(@PathVariable Long id) {
+        return eventRepository.findById(id).orElse(null);
     }
 }
