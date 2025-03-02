@@ -1,6 +1,7 @@
 package ohjelmistoprojekti1.ticketguru.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ohjelmistoprojekti1.ticketguru.domain.Event;
@@ -21,5 +22,10 @@ public class EventRestController {
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
         return eventRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping
+    public Event createEvent(@RequestBody Event event) {
+        return eventRepository.save(event);
     }
 }
