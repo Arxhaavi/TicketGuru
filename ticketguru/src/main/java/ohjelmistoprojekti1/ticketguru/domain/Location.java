@@ -17,7 +17,7 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long location_id;
 
     private String name;
     private String streetAddress;
@@ -43,12 +43,12 @@ public class Location {
         this.capacity = capacity;
     }
 
-    public Long getId() {
-        return id;
+    public Long getLocation_Id() {
+        return location_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLocation_Id(Long location_id) {
+        this.location_id = location_id;
     }
 
     public String getName() {
@@ -93,7 +93,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location [id=" + id + ", name=" + name + ", streetAddress=" + streetAddress + ", postalcode="
+        return "Location [id=" + location_id + ", name=" + name + ", streetAddress=" + streetAddress + ", postalcode="
                 + postalcode + ", capacity=" + capacity + ", events=" + events + "]";
     }
 

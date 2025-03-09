@@ -9,10 +9,15 @@ public class TicketType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ticketTypeId;
 
+    @OneToMany
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
+
     @Column(length = 50, nullable = false)
     private String ticketType;
 
-    public TicketType() {}
+    public TicketType() {
+    }
 
     public TicketType(String ticketType) {
         this.ticketType = ticketType;
@@ -26,6 +31,14 @@ public class TicketType {
         this.ticketTypeId = ticketTypeId;
     }
 
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+
     public String getTicketType() {
         return ticketType;
     }
@@ -36,6 +49,6 @@ public class TicketType {
 
     @Override
     public String toString() {
-        return "TicketType [ticketTypeId=" + ticketTypeId + ", ticketType=" + ticketType + "]";
+        return "TicketType [ticketTypeId=" + ticketTypeId + ", ticketType=" + ticketType + ", ticket=" + ticket + "]";
     }
 }
