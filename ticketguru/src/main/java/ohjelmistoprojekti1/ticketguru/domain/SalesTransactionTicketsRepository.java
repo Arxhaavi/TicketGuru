@@ -1,7 +1,7 @@
-package ohjelmistoprojekti1.ticketguru.domain;
+// package ohjelmistoprojekti1.ticketguru.domain;
 
-import org.springframework.data.repository.CrudRepository;
+// import org.springframework.data.repository.CrudRepository;
 
-public interface SalesTransactionTicketsRepository extends CrudRepository<SalesTransactionTickets, Long> {
+// public interface SalesTransactionTicketsRepository extends CrudRepository<SalesTransactionTickets, Long> {
 
-}
+// }
