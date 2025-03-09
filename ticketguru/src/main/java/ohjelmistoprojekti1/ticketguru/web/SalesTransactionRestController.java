@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ohjelmistoprojekti1.ticketguru.domain.SalesTransaction;
 import ohjelmistoprojekti1.ticketguru.domain.SalesTransactionRepository;
+import ohjelmistoprojekti1.ticketguru.domain.Ticket;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class SalesTransactionRestController {
     @PostMapping
     public SalesTransaction createSalesTransaction(@RequestBody SalesTransaction salesTransaction) {
         salesTransaction.setTransactionTime(LocalDateTime.now());
+
         return salesTransactionRepository.save(salesTransaction);
     }
 

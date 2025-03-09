@@ -23,7 +23,7 @@ public class SalesTransaction {
 
     private LocalDateTime transactionTime;
 
-    @OneToMany(mappedBy = "ticket_id")
+    @OneToMany(mappedBy = "salesTransaction")
     private List<Ticket> tickets;
 
     public SalesTransaction() {
