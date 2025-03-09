@@ -10,13 +10,15 @@ public class SalesTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
 
-    @ManyToOne
-    @JoinColumn(name = "customerId")
-    private Customer customer;
+    // Laitetaan päälle jos otetaan mukaan
+    // @ManyToOne
+    // @JoinColumn(name = "customerId")
+    // private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "paymentId")
-    private Payment payment;
+    // laitetaan päälle jos otetaan payment mukaan myöhemmin
+    // @ManyToOne
+    // @JoinColumn(name = "paymentId")
+    // private Payment payment;
 
     private LocalDateTime transactionTime;
 
@@ -31,21 +33,21 @@ public class SalesTransaction {
         this.transactionId = transactionId;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
+    // public Customer getCustomer() {
+    // return customer;
+    // }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+    // public void setCustomer(Customer customer) {
+    // this.customer = customer;
+    // }
 
-    public Payment getPayment() {
-        return payment;
-    }
+    // public Payment getPayment() {
+    // return payment;
+    // }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
+    // public void setPayment(Payment payment) {
+    // this.payment = payment;
+    // }
 
     public LocalDateTime getTransactionTime() {
         return transactionTime;
@@ -57,7 +59,7 @@ public class SalesTransaction {
 
     @Override
     public String toString() {
-        return "SalesTransaction [transactionId=" + transactionId + ", customer=" + customer + ", payment=" + payment
+        return "SalesTransaction [transactionId=" + transactionId
                 + ", transactionTime=" + transactionTime + "]";
     }
 

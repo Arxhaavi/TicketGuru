@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 public class Ticket {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private Long ticketId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ticket_id;
 
     @ManyToOne
-    @JoinColumn(name = "ticket_type_id", nullable = false)
+    @JoinColumn(name = "TicketTypeId", nullable = false)
     private TicketType ticketType;
 
     @ManyToOne
@@ -19,22 +19,25 @@ public class Ticket {
 
     private boolean ticketUsed;
 
+    private double price;
+
     public Ticket() {
 
     }
 
-    public Ticket(TicketType ticketType, Event event, boolean ticketUsed) {
+    public Ticket(TicketType ticketType, Event event, Boolean ticketUsed, Double price) {
         this.ticketType = ticketType;
         this.event = event;
         this.ticketUsed = ticketUsed;
+        this.price = price;
     }
 
     public Long getTicketId() {
-        return ticketId;
+        return ticket_id;
     }
 
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
+    public void setTicketId(Long ticket_id) {
+        this.ticket_id = ticket_id;
     }
 
     public TicketType getTicketType() {
@@ -53,19 +56,27 @@ public class Ticket {
         this.event = event;
     }
 
-    public boolean isTicketUsed() {
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Boolean isTicketUsed() {
         return ticketUsed;
     }
 
-    public void setTicketUsed(boolean ticketUsed) {
+    public void setTicketUsed(Boolean ticketUsed) {
         this.ticketUsed = ticketUsed;
     }
 
     @Override
     public String toString() {
-        return "Ticket [ticketId=" + ticketId + ", ticketType=" + ticketType + ", event=" + event + ", ticketUsed=" + ticketUsed + "]";
+        return "Ticket [ticketId=" + ticket_id + ", ticketType=" + ticketType + ", event=" + event + ", price=" + price
+                + ", ticketUsed="
+                + ticketUsed + "]";
     }
-
-
 
 }

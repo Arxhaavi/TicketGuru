@@ -1,122 +1,107 @@
-package ohjelmistoprojekti1.ticketguru.domain;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import java.util.List;
+// package ohjelmistoprojekti1.ticketguru.domain;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.ManyToOne;
+// import jakarta.persistence.OneToMany;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import java.util.List;
 
+// @Entity
+// public class Customer {
 
-@Entity
-public class Customer {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
-    private String firstName;
-    private String lastName;
-    private String streetAdress;
-    
-    @ManyToOne
-    @JoinColumn(name = "postalcode")
-    private Postalcode postalcode;
+// @Id
+// @GeneratedValue(strategy = GenerationType.IDENTITY)
+// private Long customerId;
+// private String firstName;
+// private String lastName;
+// private String streetAdress;
 
-    private String email;
-    private String phoneNumber;
+// @ManyToOne
+// @JoinColumn(name = "postalcode")
+// private Postalcode postalcode;
 
-    @OneToMany(mappedBy = "customer")
-    private List<SalesTransaction> salesTransactions;
+// private String email;
+// private String phoneNumber;
 
-    public Customer() {}
+// @OneToMany(mappedBy = "customer")
+// private List<SalesTransaction> salesTransactions;
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+// public Customer() {}
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+// public Long getCustomerId() {
+// return customerId;
+// }
 
-    public String getFirstName() {
-        return firstName;
-    }
+// public void setCustomerId(Long customerId) {
+// this.customerId = customerId;
+// }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+// public String getFirstName() {
+// return firstName;
+// }
 
-    public String getLastName() {
-        return lastName;
-    }
+// public void setFirstName(String firstName) {
+// this.firstName = firstName;
+// }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+// public String getLastName() {
+// return lastName;
+// }
 
-    public String getStreetAdress() {
-        return streetAdress;
-    }
+// public void setLastName(String lastName) {
+// this.lastName = lastName;
+// }
 
-    public void setStreetAdress(String streetAdress) {
-        this.streetAdress = streetAdress;
-    }
+// public String getStreetAdress() {
+// return streetAdress;
+// }
 
-    public Postalcode getPostalcode() {
-        return postalcode;
-    }
+// public void setStreetAdress(String streetAdress) {
+// this.streetAdress = streetAdress;
+// }
 
-    public void setPostalcode(Postalcode postalcode) {
-        this.postalcode = postalcode;
-    }
+// public Postalcode getPostalcode() {
+// return postalcode;
+// }
 
-    public String getEmail() {
-        return email;
-    }
+// public void setPostalcode(Postalcode postalcode) {
+// this.postalcode = postalcode;
+// }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+// public String getEmail() {
+// return email;
+// }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+// public void setEmail(String email) {
+// this.email = email;
+// }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+// public String getPhoneNumber() {
+// return phoneNumber;
+// }
 
-    public List<SalesTransaction> getSalesTransactions() {
-        return salesTransactions;
-    }
+// public void setPhoneNumber(String phoneNumber) {
+// this.phoneNumber = phoneNumber;
+// }
 
-    public void setSalesTransactions(List<SalesTransaction> salesTransactions) {
-        this.salesTransactions = salesTransactions;
-    }
+// public List<SalesTransaction> getSalesTransactions() {
+// return salesTransactions;
+// }
 
-    @Override
-    public String toString() {
-        return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-                + ", streetAdress=" + streetAdress + ", postalcode=" + postalcode + ", email=" + email
-                + ", phoneNumber=" + phoneNumber + ", salesTransactions=" + salesTransactions + "]";
-    }
+// public void setSalesTransactions(List<SalesTransaction> salesTransactions) {
+// this.salesTransactions = salesTransactions;
+// }
 
-    
+// @Override
+// public String toString() {
+// return "Customer [customerId=" + customerId + ", firstName=" + firstName + ",
+// lastName=" + lastName
+// + ", streetAdress=" + streetAdress + ", postalcode=" + postalcode + ",
+// email=" + email
+// + ", phoneNumber=" + phoneNumber + ", salesTransactions=" + salesTransactions
+// + "]";
+// }
 
-    
-    }
-
-    
-
-    
-
-
-
-
-
-
-    
-
-
-
+// }

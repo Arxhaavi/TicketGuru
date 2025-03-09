@@ -8,20 +8,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long event_id;
 
     private String name, description;
     private LocalDate startTime;
     private LocalDate endTime;
 
+    @OneToMany
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
+
     @ManyToOne
-    @JoinColumn(name = "locationid")
+    @JoinColumn(name = "location_id")
     private Location location;
 
     private int ticketCount;
@@ -31,7 +36,7 @@ public class Event {
     }
 
     public Event(String name, String description, LocalDate startTime, LocalDate endTime, Location location,
-            int ticketCount) {
+            int ticketCount, Ticket ticket) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -40,12 +45,20 @@ public class Event {
         this.ticketCount = ticketCount;
     }
 
-    public Long getId() {
-        return id;
+    public Long getEvent_Id() {
+        return event_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long event_id) {
+        this.event_id = event_id;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void SetTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public String getName() {
@@ -98,7 +111,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event [id=" + id + ", name=" + name + ", description=" + description + ", startTime=" + startTime
+        return "Event [id=" + event_id + ", name=" + name + ", description=" + description + ", startTime=" + startTime
                 + ", endTime=" + endTime + ", location=" + location + ", ticketCount=" + ticketCount + "]";
     }
 

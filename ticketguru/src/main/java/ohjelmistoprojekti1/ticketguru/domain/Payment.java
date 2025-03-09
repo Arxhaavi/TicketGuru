@@ -1,85 +1,85 @@
-package ohjelmistoprojekti1.ticketguru.domain;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
+// package ohjelmistoprojekti1.ticketguru.domain;
+// import jakarta.persistence.*;
+// import java.time.LocalDateTime;
 
+// Laitetaan myöhemmin päälle jos käytetään tätä entityä
 
-@Entity
-public class Payment {
+// @Entity
+// public class Payment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
+// @Id
+// @GeneratedValue(strategy = GenerationType.IDENTITY)
+// private Long paymentId;
 
-    @OneToOne
-    @JoinColumn(name = "transactionId")
-    private SalesTransaction salesTransaction;
+// @OneToOne
+// @JoinColumn(name = "transactionId")
+// private SalesTransaction salesTransaction;
 
-    private String paymentMethod;
+// private String paymentMethod;
 
-    private String paymentStatus;
+// private String paymentStatus;
 
-    private LocalDateTime paymentTime;
+// private LocalDateTime paymentTime;
 
-    private double paymentAmount;
+// private double paymentAmount;
 
-    public Payment() {}
+// public Payment() {}
 
-    public Long getPaymentId() {
-        return paymentId;
-    }
+// public Long getPaymentId() {
+// return paymentId;
+// }
 
-    public void setPaymentId(Long paymentId) {
-        this.paymentId = paymentId;
-    }
+// public void setPaymentId(Long paymentId) {
+// this.paymentId = paymentId;
+// }
 
-    public SalesTransaction getSalesTransaction() {
-        return salesTransaction;
-    }
+// public SalesTransaction getSalesTransaction() {
+// return salesTransaction;
+// }
 
-    public void setSalesTransaction(SalesTransaction salesTransaction) {
-        this.salesTransaction = salesTransaction;
-    }
+// public void setSalesTransaction(SalesTransaction salesTransaction) {
+// this.salesTransaction = salesTransaction;
+// }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
+// public String getPaymentMethod() {
+// return paymentMethod;
+// }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
+// public void setPaymentMethod(String paymentMethod) {
+// this.paymentMethod = paymentMethod;
+// }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
+// public String getPaymentStatus() {
+// return paymentStatus;
+// }
 
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
+// public void setPaymentStatus(String paymentStatus) {
+// this.paymentStatus = paymentStatus;
+// }
 
-    public LocalDateTime getPaymentTime() {
-        return paymentTime;
-    }
+// public LocalDateTime getPaymentTime() {
+// return paymentTime;
+// }
 
-    public void setPaymentTime(LocalDateTime paymentTime) {
-        this.paymentTime = paymentTime;
-    }
+// public void setPaymentTime(LocalDateTime paymentTime) {
+// this.paymentTime = paymentTime;
+// }
 
-    public double getPaymentAmount() {
-        return paymentAmount;
-    }
+// public double getPaymentAmount() {
+// return paymentAmount;
+// }
 
-    public void setPaymentAmount(double paymentAmount) {
-        this.paymentAmount = paymentAmount;
-    }
+// public void setPaymentAmount(double paymentAmount) {
+// this.paymentAmount = paymentAmount;
+// }
 
-    @Override
-    public String toString() {
-        return "Payment [paymentId=" + paymentId + ", salesTransaction=" + salesTransaction + ", paymentMethod="
-                + paymentMethod + ", paymentStatus=" + paymentStatus + ", paymentTime=" + paymentTime
-                + ", paymentAmount=" + paymentAmount + "]";
-    }
+// @Override
+// public String toString() {
+// return "Payment [paymentId=" + paymentId + ", salesTransaction=" +
+// salesTransaction + ", paymentMethod="
+// + paymentMethod + ", paymentStatus=" + paymentStatus + ", paymentTime=" +
+// paymentTime
+// + ", paymentAmount=" + paymentAmount + "]";
+// }
 
-    
-
-
-}
+// }
