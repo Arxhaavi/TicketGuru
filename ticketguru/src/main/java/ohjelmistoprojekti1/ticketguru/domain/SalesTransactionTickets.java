@@ -1,61 +1,60 @@
-package ohjelmistoprojekti1.ticketguru.domain;
+// package ohjelmistoprojekti1.ticketguru.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.OneToMany;
+// import jakarta.persistence.OneToOne;
+// import java.util.List;
 
-@Entity
-public class SalesTransactionTickets {
+// @Entity
+// public class SalesTransactionTickets {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long salesTransactionTickets_id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.AUTO)
+//     private Long salesTransactionTickets_id;
 
-    @OneToMany
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+//     @OneToMany
+//     @JoinColumn(name = "ticket_id", nullable = true)
+//     private List<Ticket> tickets;
 
-    @OneToOne
-    @JoinColumn(name = "transactionId")
-    private SalesTransaction salesTransaction;
+//     @OneToOne
+//     @JoinColumn(name = "transactionId")
+//     private SalesTransaction salesTransaction;
 
-    public SalesTransactionTickets(Ticket ticket, SalesTransaction salesTransaction) {
-        this.ticket = ticket;
-        this.salesTransaction = salesTransaction;
+//     public SalesTransactionTickets(SalesTransaction salesTransaction) {
+//         this.salesTransaction = salesTransaction;
 
-    }
+//     }
 
-    public Long getSalesTransactionTickets_id() {
-        return salesTransactionTickets_id;
-    }
+//     public Long getSalesTransactionTickets_id() {
+//         return salesTransactionTickets_id;
+//     }
 
-    public void setSalesTransactionTickets_id(Long salesTransactionTickets_id) {
-        this.salesTransactionTickets_id = salesTransactionTickets_id;
-    }
+//     public void setSalesTransactionTickets_id(Long salesTransactionTickets_id) {
+//         this.salesTransactionTickets_id = salesTransactionTickets_id;
+//     }
 
-    public Ticket getTicket() {
-        return ticket;
-    }
+//     public List<Ticket> getTickets() {
+//         return tickets;
+//     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
+//     public void setTickets(List<Ticket> tickets) {
+//         this.tickets = tickets;
+//     }
 
-    public SalesTransaction getSalesTransaction() {
-        return salesTransaction;
-    }
+//     public SalesTransaction getSalesTransaction() {
+//         return salesTransaction;
+//     }
 
-    public void setSalesTransaction(SalesTransaction salesTransaction) {
-        this.salesTransaction = salesTransaction;
-    }
+//     public void setSalesTransaction(SalesTransaction salesTransaction) {
+//         this.salesTransaction = salesTransaction;
+//     }
 
-    @Override
-    public String toString() {
-        return "SalesTransactionTickets [id=" + salesTransactionTickets_id + ", Ticket=" + ticket
-                + ", SalesTransaction=" + salesTransaction + "]";
-    }
-}
+//     @Override
+//     public String toString() {
+//         return "SalesTransactionTickets [id=" + salesTransactionTickets_id + ", tickets=" + tickets + ", salesTransaction=" + salesTransaction + "]";
+//     }
+// }

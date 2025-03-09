@@ -2,6 +2,7 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class SalesTransaction {
@@ -22,6 +23,9 @@ public class SalesTransaction {
 
     private LocalDateTime transactionTime;
 
+    @OneToMany(mappedBy = "salesTransaction")
+    private List<Ticket> tickets;
+
     public SalesTransaction() {
     }
 
@@ -31,6 +35,14 @@ public class SalesTransaction {
 
     public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     // public Customer getCustomer() {

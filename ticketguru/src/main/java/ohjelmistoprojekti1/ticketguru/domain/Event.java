@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Event {
@@ -21,10 +20,6 @@ public class Event {
     private LocalDate startTime;
     private LocalDate endTime;
 
-    @OneToMany
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
-
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
@@ -36,7 +31,7 @@ public class Event {
     }
 
     public Event(String name, String description, LocalDate startTime, LocalDate endTime, Location location,
-            int ticketCount, Ticket ticket) {
+            int ticketCount) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -51,14 +46,6 @@ public class Event {
 
     public void setId(Long event_id) {
         this.event_id = event_id;
-    }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
-
-    public void SetTicket(Ticket ticket) {
-        this.ticket = ticket;
     }
 
     public String getName() {

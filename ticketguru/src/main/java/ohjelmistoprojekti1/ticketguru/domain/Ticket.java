@@ -21,6 +21,10 @@ public class Ticket {
 
     private double price;
 
+    @ManyToOne
+    @JoinColumn(name = "transactionId", nullable = true)
+    private SalesTransaction salesTransaction;
+
     public Ticket() {
 
     }
@@ -30,8 +34,10 @@ public class Ticket {
         this.event = event;
         this.ticketUsed = ticketUsed;
         this.price = price;
+        this.salesTransaction = null;
     }
 
+    // Getterit ja setterit
     public Long getTicketId() {
         return ticket_id;
     }
@@ -72,11 +78,18 @@ public class Ticket {
         this.ticketUsed = ticketUsed;
     }
 
+
+    public SalesTransaction getSalesTransaction() {
+        return salesTransaction;
+    }
+
+    public void setSalesTransaction(SalesTransaction salesTransaction) {
+        this.salesTransaction = salesTransaction;
+    }
+
     @Override
     public String toString() {
         return "Ticket [ticketId=" + ticket_id + ", ticketType=" + ticketType + ", event=" + event + ", price=" + price
-                + ", ticketUsed="
-                + ticketUsed + "]";
+                + ", ticketUsed=" + ticketUsed +  "]";
     }
-
 }
