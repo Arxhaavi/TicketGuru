@@ -2,8 +2,6 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Postalcode {
@@ -11,17 +9,13 @@ public class Postalcode {
     @Id
     private String postalcode;
 
-    @OneToMany
-    @JoinColumn(name = "location_id")
-    private Location location;
-
     private String city;
     private String country;
 
     public Postalcode() {
     }
 
-    public Postalcode(String postalcode, String city, String country, Location location) {
+    public Postalcode(String postalcode, String city, String country) {
         this.postalcode = postalcode;
         this.city = city;
         this.country = country;
@@ -33,14 +27,6 @@ public class Postalcode {
 
     public void setPostalcode(String postalcode) {
         this.postalcode = postalcode;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public String getCity() {
