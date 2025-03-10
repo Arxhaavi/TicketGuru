@@ -35,7 +35,7 @@ public class SalesTransactionRestController {
     private SalesTransactionRepository salesTransactionRepository;
 
     @Autowired
-    TicketRepository ticketRepository; // VH
+    TicketRepository ticketRepository;
 
     @GetMapping
     public Iterable<SalesTransaction> getAllEvents() {
@@ -47,8 +47,14 @@ public class SalesTransactionRestController {
         return salesTransactionRepository.findById(id).orElse(null);
     }
 
+    // Post-controller ottaa parametrinä SalesTransactionRequestDTO-muotoisen
+    // requestbodyn
+    // Controller luo SalesTransactionResponseDTO-muotoisen responsen, joka haetaan
+    // SalesTransactionService-luokasta,
+    // ja lopuksi palauttaa responsen
     @PostMapping
-    public ResponseEntity<SalesTransactionResponseDTO> createSalesTransaction(@RequestBody SalesTransactionRequestDTO request) {
+    public ResponseEntity<SalesTransactionResponseDTO> createSalesTransaction(
+            @RequestBody SalesTransactionRequestDTO request) {
         SalesTransactionResponseDTO response = salesTransactionService.createSalesTransaction(request);
         return ResponseEntity.ok(response);
     }

@@ -25,37 +25,50 @@ public class TicketguruApplication {
 
 	@Bean
 	public CommandLineRunner loadData(LocationRepository locationRepository, EventRepository eventRepository,
-			PostalcodeRepository postalcodeRepository, TicketTypeRepository ticketTypeRepository, TicketRepository ticketRepository) {
+			PostalcodeRepository postalcodeRepository, TicketTypeRepository ticketTypeRepository,
+			TicketRepository ticketRepository) {
 		return (args) -> {
 
+			// Luo testidatan H2-tietokantaan
+			// Luo postinumero
 			Postalcode postalcode = new Postalcode("33100", "Tampere", "Suomi");
 			postalcodeRepository.save(postalcode);
 
+			// Luo sijainti
 			Location location = new Location("Tampere Arena", "Hämeenkatu 30, Tampere", postalcode, 5000);
 			locationRepository.save(location);
 
-			Event event = new Event("Jalkapallo-ottelu", "Suomen maajoukkueen peli",
+			// Luo tapahtumat
+			Event event1 = new Event("Jalkapallo-ottelu", "Suomen maajoukkueen peli",
 					java.time.LocalDate.of(2025, 6, 15), java.time.LocalDate.of(2025, 6, 15),
 					location, 2000);
-			eventRepository.save(event);
 
+			Event event2 = new Event("Super gaala", "Juhlagaala", java.time.LocalDate.of(2025, 6, 15),
+					java.time.LocalDate.of(2025, 6, 15), location, 500);
+
+			eventRepository.save(event1);
+			eventRepository.save(event2);
+
+			// Luo lipputyypit
 			TicketType ticketType1 = new TicketType("Eläkeläinen");
-            TicketType ticketType2 = new TicketType("Opiskelija");
-            ticketTypeRepository.save(ticketType1);
-            ticketTypeRepository.save(ticketType2);
+			TicketType ticketType2 = new TicketType("Opiskelija");
+			ticketTypeRepository.save(ticketType1);
+			ticketTypeRepository.save(ticketType2);
 
-			Ticket ticket1 = new Ticket(ticketType1, event, false, 100.0);
-			Ticket ticket2 = new Ticket(ticketType2, event, false, 120.0);
+			// Luo esimerkkiliput
+			Ticket ticket1 = new Ticket(ticketType1, event1, false, 100.0);
+			Ticket ticket2 = new Ticket(ticketType2, event1, false, 120.0);
 			ticketRepository.save(ticket1);
-            ticketRepository.save(ticket2);
+			ticketRepository.save(ticket2);
 
 			System.out.println("Testidataa lisätty:");
 			System.out.println(location);
-			System.out.println(event);
+			System.out.println(event1);
+			System.out.println(event2);
 			System.out.println(ticketType1);
-            System.out.println(ticketType2);
-            System.out.println(ticket1);
-            System.out.println(ticket2);
+			System.out.println(ticketType2);
+			System.out.println(ticket1);
+			System.out.println(ticket2);
 		};
 	}
 
