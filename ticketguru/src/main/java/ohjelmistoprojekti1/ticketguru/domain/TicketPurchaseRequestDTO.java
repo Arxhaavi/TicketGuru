@@ -4,7 +4,7 @@ public class TicketPurchaseRequestDTO {
     private Long eventId;
     private Long ticketTypeId;
     private int count;
-    private int price; 
+    private double price; 
 
     public TicketPurchaseRequestDTO(Long eventId, Long ticketTypeId, int count) {
         this.eventId = eventId;
@@ -29,7 +29,7 @@ public class TicketPurchaseRequestDTO {
     public void setCount(int count) {
         this.count = count;
     }
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
     public void setPrice(int price) {
