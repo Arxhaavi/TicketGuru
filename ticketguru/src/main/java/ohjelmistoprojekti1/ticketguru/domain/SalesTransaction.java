@@ -23,6 +23,8 @@ public class SalesTransaction {
 
     private LocalDateTime transactionTime;
 
+    private double sum; 
+
     @OneToMany(mappedBy = "salesTransaction")
     private List<Ticket> tickets;
 
@@ -43,6 +45,14 @@ public class SalesTransaction {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
     }
 
     // public Customer getCustomer() {
@@ -74,5 +84,7 @@ public class SalesTransaction {
         return "SalesTransaction [transactionId=" + transactionId
                 + ", transactionTime=" + transactionTime + "]";
     }
+
+  
 
 }
