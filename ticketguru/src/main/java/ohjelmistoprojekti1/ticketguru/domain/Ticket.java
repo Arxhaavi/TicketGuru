@@ -1,5 +1,7 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -22,7 +24,8 @@ public class Ticket {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "transactionId", nullable = true)
+    @JoinColumn(name = "transactionId")
+    @JsonIgnore
     private SalesTransaction salesTransaction;
 
     public Ticket() {
@@ -78,7 +81,6 @@ public class Ticket {
         this.ticketUsed = ticketUsed;
     }
 
-
     public SalesTransaction getSalesTransaction() {
         return salesTransaction;
     }
@@ -90,6 +92,6 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket [ticketId=" + ticket_id + ", ticketType=" + ticketType + ", event=" + event + ", price=" + price
-                + ", ticketUsed=" + ticketUsed +  "]";
+                + ", ticketUsed=" + ticketUsed + "]";
     }
 }
