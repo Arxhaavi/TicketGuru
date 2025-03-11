@@ -1,7 +1,19 @@
 # TicketGuru
 Tiimi: Artturi Haavisto, Veera Heikkinen, Eetu Pärnänen, Riku Roivanen
 
-
+## Sisällysluettelo
+- [Johdanto](#johdanto)
+- [Tavoitteet ja käyttäjät](#tavoitteet-ja-käyttäjät)
+- [Teknologiat ja toteutusympäristö](#teknologiat-ja-toteutusympäristö)
+- [Projektin lopputulos](#projektin-lopputulos)
+- [Järjestelmän määrittely](#järjestelmän-määrittely)
+  - [Käyttäjäryhmät ja käyttäjätarinat](#käyttäjäryhmät-ja-käyttäjätarinat)
+  - [Käyttöliittymät](#käyttöliittymät)
+  - [Tietokanta](#tietokanta)
+- [Rajapinta](#rajapinta)
+  - [Tapahtuma](#hae-kaikki-tapahtumat)
+  - [Myyntitapahtuma](#hae-kaikki-myyntitapahtumat)
+  
 ## Johdanto
 TicketGuru on lipunmyyntijärjestelmä, joka on suunniteltu helpottamaan tapahtumalippujen myyntiä ja hallintaa. Järjestelmän tilaajana on lipputoimisto, joka myy lippuja myyntipisteissään ja tapahtumien ovella.
  Järjestelmän avulla lipunmyyjät voivat myydä ja tulostaa lippuja asiakkaille, ja ovimyyjät voivat tarkistaa ja merkitä liput käytetyiksi sisäänpääsyssä.  
@@ -418,7 +430,7 @@ tapahtuman id
                     "event_Id": 1
                 },
                 "ticketUsed": false,
-                "price": 20.0,
+                "price": 25.0,
                 "ticketId": 5
             }]
 }
@@ -470,7 +482,7 @@ tapahtuman id
                     "event_Id": 1
                 },
                 "ticketUsed": false,
-                "price": 20.0,
+                "price": 25.0,
                 "ticketId": 5
             }]
 }
