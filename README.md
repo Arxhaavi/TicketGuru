@@ -371,3 +371,55 @@ tapahtuman id
 **Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
 
 **Vastauksen sisältö (Response body)**: -
+
+# Hae kaikki myyntitapahtumat
+
+**Metodi:** `GET`
+
+**Polku:** `/api/sales`
+
+**Polkuparametrit:** -
+
+**Query-parametrit:** -
+
+**Toimintopyynnön sisältö (Request body):** -
+
+**Vastauksen paluukoodi:** `200 OK`
+
+**Vastauksen sisältö (Response body):**
+```json
+{
+        "transactionId": 1,
+        "transactionTime": "2025-03-10T16:46:16.858183",
+        "sum": 25.0,
+        "tickets": [
+            {
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "event": {
+                    "name": "Jalkapallo-ottelu",
+                    "description": "Suomen maajoukkueen peli",
+                    "startTime": "2025-06-15",
+                    "endTime": "2025-06-15",
+                    "location": {
+                        "name": "Tampere Arena",
+                        "streetAddress": "Hämeenkatu 30, Tampere",
+                        "postalcode": {
+                            "postalcode": "33100",
+                            "city": "Tampere",
+                            "country": "Suomi"
+                        },
+                        "capacity": 5000,
+                        "location_Id": 1
+                    },
+                    "ticketCount": 2000,
+                    "event_Id": 1
+                },
+                "ticketUsed": false,
+                "price": 20.0,
+                "ticketId": 5
+            }]
+}
+```
