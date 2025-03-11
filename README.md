@@ -484,3 +484,56 @@ tapahtuman id
             }]
 }
 ```
+
+# Luo uusi myyntitapahtuma
+
+**Metodi:** `POST`
+
+**Polku:** `/api/sales/`
+
+**Polkuparametrit:** 
+
+**Query-parametrit:** 
+
+**Toimintopyynnön sisältö (Request body):** 
+```json
+{
+  "tickets": [
+        { "eventId": 1, "price": 20.0, "ticketTypeId": 1, "count": 2 },
+        { "eventId": 1, "price": 50.0, "ticketTypeId": 2, "count": 2 }
+    ]
+}
+```
+
+**Vastauksen paluukoodi:** `200 OK`,`404 Not found`
+
+**Vastauksen sisältö (Response body):**
+```json
+{
+    "salesTransactionId": 4,
+    "ticketIds": [
+        11,
+        12,
+        13,
+        14
+    ],
+    "totalSum": 140.0
+}
+```
+
+# Poista myyntitapahtuma id:n perusteella
+
+**Metodi** : `DELETE`
+
+**Polku** : `/api/saless/{id}`
+
+**Polkuparametrit** : {id}
+(myyntitapahtuman id)
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : -
+
+**Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
+
+**Vastauksen sisältö (Response body)**: -
