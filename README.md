@@ -1,6 +1,15 @@
 # TicketGuru
-Tiimi: Artturi Haavisto, Veera Heikkinen, Eetu Pärnänen, Riku Roivanen, Carolina Woodfine
+Tiimi: Artturi Haavisto, Veera Heikkinen, Eetu Pärnänen, Riku Roivanen
 
+## Sisällysluettelo
+- [Johdanto](#johdanto)
+- [Järjestelmän määrittely](#järjestelmän-määrittely)
+  - [Käyttäjäryhmät ja käyttäjätarinat](#käyttäjäryhmät-ja-käyttäjätarinat)
+  - [Käyttöliittymät](#käyttöliittymät)
+  - [Tietokanta](#tietokanta)
+- [Rajapinta](#rajapinta)
+  - [Tapahtuma](#hae-kaikki-tapahtumat)
+  - [Myyntitapahtuma](#hae-kaikki-myyntitapahtumat)
 
 ## Johdanto
 TicketGuru on lipunmyyntijärjestelmä, joka on suunniteltu helpottamaan tapahtumalippujen myyntiä ja hallintaa. Järjestelmän tilaajana on lipputoimisto, joka myy lippuja myyntipisteissään ja tapahtumien ovella.
@@ -363,6 +372,163 @@ tapahtuman id
 
 **Polkuparametrit** : {id}
 (tapahtuman id)
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : -
+
+**Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
+
+**Vastauksen sisältö (Response body)**: -
+
+# Hae kaikki myyntitapahtumat
+
+**Metodi:** `GET`
+
+**Polku:** `/api/sales`
+
+**Polkuparametrit:** -
+
+**Query-parametrit:** -
+
+**Toimintopyynnön sisältö (Request body):** -
+
+**Vastauksen paluukoodi:** `200 OK`
+
+**Vastauksen sisältö (Response body):**
+```json
+{
+        "transactionId": 1,
+        "transactionTime": "2025-03-10T16:46:16.858183",
+        "sum": 25.0,
+        "tickets": [
+            {
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "event": {
+                    "name": "Jalkapallo-ottelu",
+                    "description": "Suomen maajoukkueen peli",
+                    "startTime": "2025-06-15",
+                    "endTime": "2025-06-15",
+                    "location": {
+                        "name": "Tampere Arena",
+                        "streetAddress": "Hämeenkatu 30, Tampere",
+                        "postalcode": {
+                            "postalcode": "33100",
+                            "city": "Tampere",
+                            "country": "Suomi"
+                        },
+                        "capacity": 5000,
+                        "location_Id": 1
+                    },
+                    "ticketCount": 2000,
+                    "event_Id": 1
+                },
+                "ticketUsed": false,
+                "price": 25.0,
+                "ticketId": 5
+            }]
+}
+```
+
+# Hae myyntitapahtuma id:n perusteella
+
+**Metodi:** `GET`
+
+**Polku:** `/api/sales/{id}`
+
+**Polkuparametrit:** `{id}` myyntitapahtuman id
+
+**Query-parametrit:** - 
+
+**Toimintopyynnön sisältö (Request body):** -
+
+**Vastauksen paluukoodi:** `200 OK`,`404 Not found`
+
+**Vastauksen sisältö (Response body):**
+```json
+{
+  "transactionId": 1,
+        "transactionTime": "2025-03-10T16:46:16.858183",
+        "sum": 25.0,
+        "tickets": [
+            {
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "event": {
+                    "name": "Jalkapallo-ottelu",
+                    "description": "Suomen maajoukkueen peli",
+                    "startTime": "2025-06-15",
+                    "endTime": "2025-06-15",
+                    "location": {
+                        "name": "Tampere Arena",
+                        "streetAddress": "Hämeenkatu 30, Tampere",
+                        "postalcode": {
+                            "postalcode": "33100",
+                            "city": "Tampere",
+                            "country": "Suomi"
+                        },
+                        "capacity": 5000,
+                        "location_Id": 1
+                    },
+                    "ticketCount": 2000,
+                    "event_Id": 1
+                },
+                "ticketUsed": false,
+                "price": 25.0,
+                "ticketId": 5
+            }]
+}
+```
+
+# Luo uusi myyntitapahtuma
+
+**Metodi:** `POST`
+
+**Polku:** `/api/sales/`
+
+**Polkuparametrit:** 
+
+**Query-parametrit:** 
+
+**Toimintopyynnön sisältö (Request body):** 
+```json
+{
+  "tickets": [
+        { "eventId": 1, "price": 20.0, "ticketTypeId": 1, "count": 2 },
+        { "eventId": 1, "price": 50.0, "ticketTypeId": 2, "count": 2 }
+    ]
+}
+```
+
+**Vastauksen paluukoodi:** `200 OK`,`404 Not found`
+
+**Vastauksen sisältö (Response body):**
+```json
+{
+    "salesTransactionId": 4,
+    "ticketIds": [
+        11,
+        12,
+        13,
+        14
+    ],
+    "totalSum": 140.0
+}
+```
+
+# Poista myyntitapahtuma id:n perusteella
+
+**Metodi** : `DELETE`
+
+**Polku** : `/api/saless/{id}`
+
+**Polkuparametrit** : {id}
+(myyntitapahtuman id)
 
 **Query-parametrit** : -
 
