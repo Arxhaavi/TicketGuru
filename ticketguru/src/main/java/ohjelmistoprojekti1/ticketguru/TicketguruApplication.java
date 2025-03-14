@@ -40,11 +40,11 @@ public class TicketguruApplication {
 
 			// Luo tapahtumat
 			Event event1 = new Event("Jalkapallo-ottelu", "Suomen maajoukkueen peli",
-					java.time.LocalDate.of(2025, 6, 15), java.time.LocalDate.of(2025, 6, 15),
+					java.time.LocalDateTime.of(2025, 6, 15, 18,15, 0), java.time.LocalDateTime.of(2025, 6, 15, 20, 15, 0),
 					location, 2000);
 
-			Event event2 = new Event("Super gaala", "Juhlagaala", java.time.LocalDate.of(2025, 6, 15),
-					java.time.LocalDate.of(2025, 6, 15), location, 500);
+			Event event2 = new Event("Super gaala", "Juhlagaala", java.time.LocalDateTime.of(2025, 6, 15, 18, 0, 0),
+					java.time.LocalDateTime.of(2025, 6, 15, 21, 0, 0), location, 500);
 
 			eventRepository.save(event1);
 			eventRepository.save(event2);

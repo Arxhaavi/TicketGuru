@@ -1,31 +1,44 @@
 package ohjelmistoprojekti1.ticketguru.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import jakarta.validation.Valid;
 import ohjelmistoprojekti1.ticketguru.domain.Event;
 import ohjelmistoprojekti1.ticketguru.domain.EventRepository;
+
+
 
 @RestController
 @RequestMapping("/api/events")
 public class EventRestController {
 
+   
+
     @Autowired
     private EventRepository eventRepository;
 
+
     @GetMapping
-    public Iterable<Event> getAllEvents() {
-        return eventRepository.findAll();
+    public ResponseEntity <Iterable<Event>> getAllEvents() {
+        return
+        ResponseEntity.ok(eventRepository.findAll());
+       
     }
 
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
-        return eventRepository.findById(id).orElse(null);
+        return eventRepository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
     }
 
     
     @PostMapping
-    public Event createEvent(@RequestBody Event event) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Event createEvent(@Valid @RequestBody Event event) {
         return eventRepository.save(event);
     }
 

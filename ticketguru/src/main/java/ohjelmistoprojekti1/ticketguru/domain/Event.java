@@ -1,6 +1,6 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Event {
@@ -16,21 +17,33 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long event_id;
 
-    private String name, description;
-    private LocalDate startTime;
-    private LocalDate endTime;
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
+    private String name;
+
+    @Size(max = 500, message = "Description must be less than 500 characters")
+    private String description;
+
+
+    @NotNull(message = "Start time is mandatory")
+    private LocalDateTime startTime;
+
+    @NotNull(message = "End time is mandatory")
+    private LocalDateTime endTime;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
+    @NotNull(message = "Ticket count is mandatory")
+    @Min(value = 1, message = "Ticket count must be at least 1")
     private int ticketCount;
 
     public Event() {
 
     }
 
-    public Event(String name, String description, LocalDate startTime, LocalDate endTime, Location location,
+    public Event(String name, String description, LocalDateTime startTime, LocalDateTime endTime, Location location,
             int ticketCount) {
         this.name = name;
         this.description = description;
@@ -64,19 +77,19 @@ public class Event {
         this.description = description;
     }
 
-    public LocalDate getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDate startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDate getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDate endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
