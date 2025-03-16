@@ -1,5 +1,7 @@
 package ohjelmistoprojekti1.ticketguru.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,33 +11,30 @@ import org.springframework.web.server.ResponseStatusException;
 import jakarta.validation.Valid;
 import ohjelmistoprojekti1.ticketguru.domain.Event;
 import ohjelmistoprojekti1.ticketguru.domain.EventRepository;
-
-
+import ohjelmistoprojekti1.ticketguru.domain.TicketRepository;
 
 @RestController
 @RequestMapping("/api/events")
 public class EventRestController {
 
-   
-
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private TicketRepository ticketRepository;
 
     @GetMapping
-    public ResponseEntity <Iterable<Event>> getAllEvents() {
-        return
-        ResponseEntity.ok(eventRepository.findAll());
-       
+    public ResponseEntity<Iterable<Event>> getAllEvents() {
+        return ResponseEntity.ok(eventRepository.findAll());
+
     }
 
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
         return eventRepository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
     }
 
-    
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Event createEvent(@Valid @RequestBody Event event) {
@@ -45,7 +44,7 @@ public class EventRestController {
     @PutMapping("/{id}")
     public Event updateEvent(@PathVariable Long id, @RequestBody Event event) {
         if (!eventRepository.existsById(id)) {
-            return null;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
         }
         event.setId(id);
         return eventRepository.save(event);
@@ -54,7 +53,8 @@ public class EventRestController {
     @PatchMapping("/{id}")
     public Event patchEvent(@PathVariable Long id, @RequestBody Event event) {
         if (!eventRepository.existsById(id)) {
-            return null;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
+
         }
 
         Event existingEvent = eventRepository.findById(id).get();
@@ -74,7 +74,7 @@ public class EventRestController {
         if (event.getLocation() != null) {
             existingEvent.setLocation(event.getLocation());
         }
-        if (event.getTicketCount() >= 0) {
+        if (event.getTicketCount() != null && event.getTicketCount() >= 0) {
             existingEvent.setTicketCount(event.getTicketCount());
         }
 
@@ -82,8 +82,20 @@ public class EventRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEvent(@PathVariable Long id) {
-        eventRepository.deleteById(id);
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
+        Optional<Event> event = eventRepository.findById(id);
+
+        if (ticketRepository.existsByEventId(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Can't delete an event that has tickets");
+        }
+
+        if (event.isPresent()) {
+            eventRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
+        }
+
     }
 
 }

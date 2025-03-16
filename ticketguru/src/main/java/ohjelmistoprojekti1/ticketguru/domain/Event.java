@@ -24,7 +24,6 @@ public class Event {
     @Size(max = 500, message = "Description must be less than 500 characters")
     private String description;
 
-
     @NotNull(message = "Start time is mandatory")
     private LocalDateTime startTime;
 
@@ -37,14 +36,14 @@ public class Event {
 
     @NotNull(message = "Ticket count is mandatory")
     @Min(value = 1, message = "Ticket count must be at least 1")
-    private int ticketCount;
+    private Integer ticketCount;
 
     public Event() {
 
     }
 
     public Event(String name, String description, LocalDateTime startTime, LocalDateTime endTime, Location location,
-            int ticketCount) {
+            Integer ticketCount) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -101,11 +100,11 @@ public class Event {
         this.location = location;
     }
 
-    public int getTicketCount() {
+    public Integer getTicketCount() {
         return ticketCount;
     }
 
-    public void setTicketCount(int ticketCount) {
+    public void setTicketCount(Integer ticketCount) {
         this.ticketCount = ticketCount;
     }
 
