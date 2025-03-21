@@ -30,8 +30,9 @@ public class Event {
     @NotNull(message = "End time is mandatory")
     private LocalDateTime endTime;
 
+    @NotNull(message = "Location is mandatory")
     @ManyToOne
-    @JoinColumn(name = "location_id")
+    @JoinColumn(name = "locationId")
     private Location location;
 
     @NotNull(message = "Ticket count is mandatory")

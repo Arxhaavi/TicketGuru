@@ -11,22 +11,32 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.*;
+
 
 @Entity
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long location_id;
+    private Long locationId;
 
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String name;
+
+    @NotBlank(message = "Street address is mandatory")
+    @Size(min = 2, max = 50, message = "Street address must be between 2 and 50 characters")
     private String streetAddress;
 
+    @NotNull(message = "Postalcode is mandatory")
     @ManyToOne
     @JoinColumn(name = "postalcode")
     private Postalcode postalcode;
 
-    private int capacity;
+    @NotNull(message = "Capacity is mandatory")
+    @Min(value = 1, message = "Capacity must be at least 1")
+    private Integer capacity;
 
     @OneToMany(mappedBy = "location")
     @JsonIgnore
@@ -36,7 +46,7 @@ public class Location {
 
     }
 
-    public Location(String name, String streetAddress, Postalcode postalcode, int capacity) {
+    public Location(String name, String streetAddress, Postalcode postalcode, Integer capacity) {
         this.name = name;
         this.streetAddress = streetAddress;
         this.postalcode = postalcode;
@@ -44,11 +54,11 @@ public class Location {
     }
 
     public Long getLocation_Id() {
-        return location_id;
+        return locationId;
     }
 
     public void setLocation_Id(Long location_id) {
-        this.location_id = location_id;
+        this.locationId = location_id;
     }
 
     public String getName() {
@@ -79,7 +89,7 @@ public class Location {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 
@@ -93,7 +103,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location [id=" + location_id + ", name=" + name + ", streetAddress=" + streetAddress + ", postalcode="
+        return "Location [id=" + locationId + ", name=" + name + ", streetAddress=" + streetAddress + ", postalcode="
                 + postalcode + ", capacity=" + capacity + ", events=" + events + "]";
     }
 

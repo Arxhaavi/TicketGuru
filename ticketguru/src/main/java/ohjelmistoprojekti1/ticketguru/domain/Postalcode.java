@@ -2,6 +2,8 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.*;
+
 
 @Entity
 public class Postalcode {
@@ -9,7 +11,12 @@ public class Postalcode {
     @Id
     private String postalcode;
 
+    @NotBlank(message = "City is mandatory")
+    @Size(min = 2, max = 100, message = "City must be between 2 and 100 characters")
     private String city;
+
+    @NotBlank(message = "Country is mandatory")
+    @Size(min = 2, max = 100, message = "Country must be between 2 and 100 characters")
     private String country;
 
     public Postalcode() {

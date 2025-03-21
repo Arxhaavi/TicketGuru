@@ -3,6 +3,8 @@ package ohjelmistoprojekti1.ticketguru.domain;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import jakarta.validation.constraints.*;
+
 
 @Entity
 public class SalesTransaction {
@@ -21,8 +23,11 @@ public class SalesTransaction {
     // @JoinColumn(name = "paymentId")
     // private Payment payment;
 
+    @NotNull(message = "Transaction time is mandatory")
     private LocalDateTime transactionTime;
 
+    @NotNull(message = "Sum is mandatory")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Sum must be greater than 0")
     private double sum; 
 
     @OneToMany(mappedBy = "salesTransaction")
