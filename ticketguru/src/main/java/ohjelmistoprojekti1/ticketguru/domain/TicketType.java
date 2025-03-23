@@ -1,6 +1,8 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class TicketType {
@@ -10,6 +12,8 @@ public class TicketType {
     private Long ticketTypeId;
 
     @Column(length = 50, nullable = false)
+    @NotBlank(message = "Ticket type cannot be blank")
+    @Size(max = 50, message = "Ticket type cannot exceed 50 characters")
     private String ticketType;
 
     public TicketType() {
