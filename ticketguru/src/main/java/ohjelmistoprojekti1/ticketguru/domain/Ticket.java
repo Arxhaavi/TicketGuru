@@ -3,6 +3,7 @@ package ohjelmistoprojekti1.ticketguru.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Ticket {
@@ -13,14 +14,18 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "TicketTypeId", nullable = false)
+    @NotNull(message = "Ticket type cannot be null")
     private TicketType ticketType;
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
+    @NotNull(message = "Event cannot be null")
     private Event event;
 
+    @NotNull(message = "Ticket used caannot be null")
     private boolean ticketUsed;
 
+    @Min (value = 0, message = "Price cannot be negative")
     private double price;
 
     @ManyToOne
