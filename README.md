@@ -505,7 +505,7 @@ tapahtuman id
 }
 ```
 
-**Vastauksen paluukoodi:** `200 OK`,`404 Not found`
+**Vastauksen paluukoodi:** `201 Created`,`404 Not found`
 
 **Vastauksen sisältö (Response body):**
 ```json

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ohjelmistoprojekti1.ticketguru.domain.SalesTransaction;
@@ -22,6 +23,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/sales")
@@ -44,7 +48,8 @@ public class SalesTransactionRestController {
 
     @GetMapping("/{id}")
     public SalesTransaction getSalesTransactionById(@PathVariable Long id) {
-        return salesTransactionRepository.findById(id).orElse(null);
+        return salesTransactionRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Sales transaction not found"));
     }
 
     // Post-controller ottaa parametrinä SalesTransactionRequestDTO-muotoisen
@@ -53,15 +58,20 @@ public class SalesTransactionRestController {
     // SalesTransactionService-luokasta,
     // ja lopuksi palauttaa responsen
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<SalesTransactionResponseDTO> createSalesTransaction(
-            @RequestBody SalesTransactionRequestDTO request) {
+            @Valid @RequestBody SalesTransactionRequestDTO request) {
         SalesTransactionResponseDTO response = salesTransactionService.createSalesTransaction(request);
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/id")
-    public void deleteSalesTransaction(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSalesTransaction(@PathVariable Long id) {
+        if (!salesTransactionRepository.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
         salesTransactionRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
