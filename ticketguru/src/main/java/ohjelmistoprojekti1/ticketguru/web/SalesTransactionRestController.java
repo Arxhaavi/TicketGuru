@@ -27,6 +27,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.Valid;
 
+
 @RestController
 @RequestMapping("/api/sales")
 

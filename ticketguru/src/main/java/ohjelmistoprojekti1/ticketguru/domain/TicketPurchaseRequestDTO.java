@@ -1,7 +1,11 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
+import jakarta.validation.constraints.NotNull;
+
 public class TicketPurchaseRequestDTO {
     private Long eventId;
+
+    @NotNull(message = "Ticket type cannot be null")
     private Long ticketTypeId;
     private int count;
     private double price; 

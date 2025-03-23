@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 
@@ -51,11 +52,11 @@ public class SalesTransactionService {
 
             // haetaan requestbodyssa välitetty EventId
             Event event = eventRepository.findById(ticketRequest.getEventId())
-                    .orElseThrow(() -> new RuntimeException("Event not found"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Event not found"));
 
             // haetaan requestbodyssa välitetty ticketType
             TicketType ticketType = ticketTypeRepository.findById(ticketRequest.getTicketTypeId())
-                    .orElseThrow(() -> new RuntimeException("Ticket type not found"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket type not found"));
 
             // haetaan requestbodyssa välitetty lipun price
             double price = ticketRequest.getPrice();
@@ -81,7 +82,7 @@ public class SalesTransactionService {
         salesTransaction.setTickets(tickets);
         salesTransactionRepository.save(salesTransaction);
 
-        //Palautetaan SalesTransactionResponseDTO-tyyppinen response
+        // Palautetaan SalesTransactionResponseDTO-tyyppinen response
         return new SalesTransactionResponseDTO(
                 salesTransaction.getTransactionId(),
                 tickets.stream().map(Ticket::getTicketId).toList(),
