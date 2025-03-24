@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 @Entity
@@ -31,6 +32,7 @@ public class Event {
     private LocalDateTime endTime;
 
     @NotNull(message = "Location is mandatory")
+    @Valid
     @ManyToOne
     @JoinColumn(name = "locationId")
     private Location location;

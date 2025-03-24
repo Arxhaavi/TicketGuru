@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 
@@ -30,6 +31,7 @@ public class Location {
     private String streetAddress;
 
     @NotNull(message = "Postalcode is mandatory")
+    @Valid
     @ManyToOne
     @JoinColumn(name = "postalcode")
     private Postalcode postalcode;
