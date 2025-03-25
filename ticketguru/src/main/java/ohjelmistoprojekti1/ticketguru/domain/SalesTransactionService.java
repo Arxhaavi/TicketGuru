@@ -53,6 +53,11 @@ public class SalesTransactionService {
         // ticketType, price ja count)
         for (TicketPurchaseRequestDTO ticketRequest : request.getTickets()) {
 
+            // Tarkistetaan, että eventId ei ole null
+            if (ticketRequest.getEventId() == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Event ID cannot be null");
+            }
+
             // haetaan requestbodyssa välitetty EventId
             Event event = eventRepository.findById(ticketRequest.getEventId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Event not found"));

@@ -1,14 +1,21 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class TicketPurchaseRequestDTO {
     private Long eventId;
 
     @NotNull(message = "Ticket type cannot be null")
+    @NotNull(message = "Ticket type cannot be null")
     private Long ticketTypeId;
+
+    @Min(value = 1, message = "Count must be at least 1")
     private int count;
-    private double price; 
+
+    @NotNull(message = "Price cannot be null")
+    @Min(value = 0, message = "Price cannot be negative")
+    private double price;
 
     public TicketPurchaseRequestDTO(Long eventId, Long ticketTypeId, int count) {
         this.eventId = eventId;
