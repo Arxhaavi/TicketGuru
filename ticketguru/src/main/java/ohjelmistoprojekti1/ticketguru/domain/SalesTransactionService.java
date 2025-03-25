@@ -30,6 +30,9 @@ public class SalesTransactionService {
     // (käyttäjän antama json objekti)
     // Funktio palauttaa SalesTransactionResponseDTO-tyyppisen responsen
     public SalesTransactionResponseDTO createSalesTransaction(SalesTransactionRequestDTO request) {
+        if (request.getTickets() == null || request.getTickets().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "At least one ticket must be associated with the transaction");
+        }
 
         // Luo uusi myyntitapahtuma
         SalesTransaction salesTransaction = new SalesTransaction();
@@ -60,18 +63,26 @@ public class SalesTransactionService {
 
             // haetaan requestbodyssa välitetty lipun price
             double price = ticketRequest.getPrice();
+            if (price < 0) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Price cannot be negative");
+            }
+
+            Integer count = ticketRequest.getCount();
+            if (count == null || count <= 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Count must be greater than 0");
+        }
 
             // haetaan requestbodyssa välitetty lippujen määrä count. Luodaan sen mukainen
             // määrä lippuja yllä hetuilla ominaisuuksilla ja tallennetaan myyntitapahtuman
             // tickets-listaan
-            for (int i = 0; i < ticketRequest.getCount(); i++) {
+            for (int i = 0; i < count; i++) {
                 Ticket ticket = new Ticket();
                 ticket.setEvent(event);
                 ticket.setTicketType(ticketType);
                 ticket.setSalesTransaction(salesTransaction);
                 ticket.setPrice(price);
                 ticket.setTicketUsed(false);
-
+    
                 ticket = ticketRepository.save(ticket);
                 tickets.add(ticket);
                 totalSum = totalSum + ticket.getPrice();

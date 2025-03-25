@@ -58,7 +58,7 @@ public class EventRestController {
     }
 
    @PatchMapping("/{id}")
-public Event patchEvent(@PathVariable Long id, @Valid @RequestBody Event event, BindingResult bindingResult) {
+    public Event patchEvent(@PathVariable Long id, @Valid @RequestBody Event event, BindingResult bindingResult) {
     if (!eventRepository.existsById(id)) {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
     }

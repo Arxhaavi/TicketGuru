@@ -43,9 +43,13 @@ public class SalesTransactionRestController {
     TicketRepository ticketRepository;
 
     @GetMapping
-    public Iterable<SalesTransaction> getAllEvents() {
-        return salesTransactionRepository.findAll();
+    public ResponseEntity<Iterable<SalesTransaction>> getAllEvents() {
+    Iterable<SalesTransaction> transactions = salesTransactionRepository.findAll();
+    if (!transactions.iterator().hasNext()) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No sales transactions found");
     }
+    return ResponseEntity.ok(transactions);
+}
 
     @GetMapping("/{id}")
     public SalesTransaction getSalesTransactionById(@PathVariable Long id) {
@@ -59,12 +63,11 @@ public class SalesTransactionRestController {
     // SalesTransactionService-luokasta,
     // ja lopuksi palauttaa responsen
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<SalesTransactionResponseDTO> createSalesTransaction(
-            @Valid @RequestBody SalesTransactionRequestDTO request) {
-        SalesTransactionResponseDTO response = salesTransactionService.createSalesTransaction(request);
-        return ResponseEntity.ok(response);
-    }
+        @Valid @RequestBody SalesTransactionRequestDTO request) {
+    SalesTransactionResponseDTO response = salesTransactionService.createSalesTransaction(request);
+    return ResponseEntity.status(HttpStatus.CREATED).body(response);
+}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSalesTransaction(@PathVariable Long id) {

@@ -22,9 +22,10 @@ public class Ticket {
     @NotNull(message = "Event cannot be null")
     private Event event;
 
-    @NotNull(message = "Ticket used caannot be null")
+    @NotNull(message = "Ticket used cannot be null")
     private boolean ticketUsed;
 
+    @NotNull(message = "Price cannot be null")
     @Min (value = 0, message = "Price cannot be negative")
     private double price;
 

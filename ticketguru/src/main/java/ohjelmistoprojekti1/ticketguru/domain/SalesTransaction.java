@@ -2,6 +2,7 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.engine.internal.Cascade;
@@ -28,13 +29,14 @@ public class SalesTransaction {
     @NotNull(message = "Transaction time is mandatory")
     private LocalDateTime transactionTime;
 
-    // @NotNull(message = "Sum is mandatory")
-    // @DecimalMin(value = "0.0", inclusive = false, message = "Sum must be greater
-    // than 0")
+    @NotNull(message = "Sum is mandatory")
+    @DecimalMin(value = "0.0", message = "Sum must be at least 0")
     private double sum;
 
+
+    @NotNull(message = "Tickets cannot be null")
     @OneToMany(mappedBy = "salesTransaction", cascade = CascadeType.ALL)
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>(); 
 
     public SalesTransaction() {
     }
