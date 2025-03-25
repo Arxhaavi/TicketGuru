@@ -266,19 +266,27 @@ tapahtuman id
 **Toimintopyynnön sisältö (Request body)** : 
 ```json
 {
-    "name": "Super-gaala",
-    "description": "Juhlatilaisuus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
-    "location": {
-      "id": 1
-    },
-    "ticketCount": 500
-  }
-
+        "name": "Uusi tapahtuma",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000,
+            "location_Id": 1
+        },
+        "ticketCount": 2000
+        
+    }
 ```
 
-**Vastauksen paluukoodi** : `201 Created` 
+**Vastauksen paluukoodi** : `201 Created`  
 
 **Vastauksen sisältö (Response body)**: 
 ```json
@@ -311,15 +319,24 @@ tapahtuman id
 **Toimintopyynnön sisältö (Request body)** : 
 ```json
 {
-    "name": "Super-gaala",
-    "description": "Uudistettu kuvaus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
-    "location": {
-      "id": 1
-    },
-    "ticketCount": 500
-  }
+        "name": "Uusi tapahtuma",
+        "description": "Päivitetty kuvaus.",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000,
+            "location_Id": 1
+        },
+        "ticketCount": 2000
+        
+    }
 
 ```
 
@@ -505,7 +522,7 @@ tapahtuman id
 }
 ```
 
-**Vastauksen paluukoodi:** `201 Created`,`404 Not found`
+**Vastauksen paluukoodi:** `201 Created`,`404 Not found`, 
 
 **Vastauksen sisältö (Response body):**
 ```json
