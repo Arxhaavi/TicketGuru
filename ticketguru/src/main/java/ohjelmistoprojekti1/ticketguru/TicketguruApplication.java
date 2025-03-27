@@ -15,6 +15,8 @@ import ohjelmistoprojekti1.ticketguru.domain.Ticket;
 import ohjelmistoprojekti1.ticketguru.domain.TicketRepository;
 import ohjelmistoprojekti1.ticketguru.domain.TicketType;
 import ohjelmistoprojekti1.ticketguru.domain.TicketTypeRepository;
+import ohjelmistoprojekti1.ticketguru.domain.User;
+import ohjelmistoprojekti1.ticketguru.domain.UserRepository;
 
 @SpringBootApplication
 public class TicketguruApplication {
@@ -26,7 +28,7 @@ public class TicketguruApplication {
 	@Bean
 	public CommandLineRunner loadData(LocationRepository locationRepository, EventRepository eventRepository,
 			PostalcodeRepository postalcodeRepository, TicketTypeRepository ticketTypeRepository,
-			TicketRepository ticketRepository) {
+			TicketRepository ticketRepository, UserRepository userRepository) {
 		return (args) -> {
 
 			// Luo testidatan H2-tietokantaan
@@ -60,6 +62,11 @@ public class TicketguruApplication {
 			Ticket ticket2 = new Ticket(ticketType2, event1, false, 120.0);
 			ticketRepository.save(ticket1);
 			ticketRepository.save(ticket2);
+
+			User user1 = new User("admin", "$2a$10$YAvqdDch33w5BecjHl6WP.LjpNaYy9jQlTcE.Krl3ib7VvzRiKUta", "ADMIN");
+			User user2 = new User("user", "$2a$10$4XXGNu904amNx2Q0tPL4OOZiLP012ULGVI2a8Em4SAJGCtQG1WBJu", "USER");
+			userRepository.save(user1);
+			userRepository.save(user2);
 
 			System.out.println("Testidataa lisätty:");
 			System.out.println(location);
