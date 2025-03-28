@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ohjelmistoprojekti1.ticketguru.domain.Event;
 import ohjelmistoprojekti1.ticketguru.domain.EventRepository;
@@ -15,8 +16,8 @@ import ohjelmistoprojekti1.ticketguru.domain.Ticket;
 import ohjelmistoprojekti1.ticketguru.domain.TicketRepository;
 import ohjelmistoprojekti1.ticketguru.domain.TicketType;
 import ohjelmistoprojekti1.ticketguru.domain.TicketTypeRepository;
-import ohjelmistoprojekti1.ticketguru.domain.User;
-import ohjelmistoprojekti1.ticketguru.domain.UserRepository;
+import ohjelmistoprojekti1.ticketguru.domain.AppUser;
+import ohjelmistoprojekti1.ticketguru.domain.AppUserRepository;
 
 @SpringBootApplication
 public class TicketguruApplication {
@@ -28,7 +29,7 @@ public class TicketguruApplication {
 	@Bean
 	public CommandLineRunner loadData(LocationRepository locationRepository, EventRepository eventRepository,
 			PostalcodeRepository postalcodeRepository, TicketTypeRepository ticketTypeRepository,
-			TicketRepository ticketRepository, UserRepository userRepository) {
+			TicketRepository ticketRepository, AppUserRepository userRepository, PasswordEncoder passwordEncoder) {
 		return (args) -> {
 
 			// Luo testidatan H2-tietokantaan
@@ -63,8 +64,8 @@ public class TicketguruApplication {
 			ticketRepository.save(ticket1);
 			ticketRepository.save(ticket2);
 
-			User user1 = new User("admin", "$2a$10$YAvqdDch33w5BecjHl6WP.LjpNaYy9jQlTcE.Krl3ib7VvzRiKUta", "ADMIN");
-			User user2 = new User("user", "$2a$10$4XXGNu904amNx2Q0tPL4OOZiLP012ULGVI2a8Em4SAJGCtQG1WBJu", "USER");
+			AppUser user1 = new AppUser("user", "$2a$10$4XXGNu904amNx2Q0tPL4OOZiLP012ULGVI2a8Em4SAJGCtQG1WBJu", "ROLE_USER"); //salasana: user
+			AppUser user2 = new AppUser("admin", "$2a$10$YAvqdDch33w5BecjHl6WP.LjpNaYy9jQlTcE.Krl3ib7VvzRiKUta", "ROLE_ADMIN"); //salasana: admin
 			userRepository.save(user1);
 			userRepository.save(user2);
 
