@@ -23,10 +23,11 @@ public class WebSecurityConfig {
             .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())) 
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN") // GET kaikille
-                .requestMatchers(HttpMethod.POST, "/api/sales/**", "/api/events/**").hasRole("USER") // USER voi POST /api/sales
-                .requestMatchers(HttpMethod.PUT, "/api/sales/**", "/api/events/**").hasRole("USER")  // USER voi PUT /api/sales
-                .requestMatchers("/api/**").hasRole("ADMIN") // ADMIN voi tehdä mitä vain
+                .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN") 
+                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN") 
+                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("USER", "ADMIN")  
+                .requestMatchers(HttpMethod.PATCH, "/api/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             );
             http.httpBasic(httpBasic -> httpBasic.realmName("TicketGuru"));
