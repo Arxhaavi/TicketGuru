@@ -22,14 +22,17 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable()) 
             .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())) 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN") 
-                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN") 
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("USER", "ADMIN")  
-                .requestMatchers(HttpMethod.PATCH, "/api/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-            );
+            .requestMatchers(HttpMethod.GET, "/api/events/**").hasAnyRole("USER", "ADMIN")
+            .requestMatchers(HttpMethod.POST, "/api/events/**").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/api/events/**").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.PATCH, "/api/events/**").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.GET, "/api/sales/**").hasAnyRole("USER", "ADMIN")
+            .requestMatchers(HttpMethod.POST, "/api/sales/**").hasRole("USER")
+            .requestMatchers(HttpMethod.PUT, "/api/sales/**").hasRole("USER")
+            .requestMatchers(HttpMethod.DELETE, "/api/sales/**").hasRole("ADMIN")
+            .anyRequest().authenticated()
+        );
             http.httpBasic(httpBasic -> httpBasic.realmName("TicketGuru"));
                     return http.build();
     }
