@@ -2,32 +2,39 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
-
 @Entity
+@Table(name = "location")
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "locationid")
     private Long locationId;
 
     @NotBlank(message = "Name is mandatory")
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
+    @Column(name = "name")
     private String name;
 
     @NotBlank(message = "Street address is mandatory")
     @Size(min = 2, max = 50, message = "Street address must be between 2 and 50 characters")
+    @Column(name = "streetaddress")
     private String streetAddress;
 
     @NotNull(message = "Postalcode is mandatory")
@@ -55,12 +62,12 @@ public class Location {
         this.capacity = capacity;
     }
 
-    public Long getLocation_Id() {
+    public Long getLocationId() {
         return locationId;
     }
 
-    public void setLocation_Id(Long location_id) {
-        this.locationId = location_id;
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
     }
 
     public String getName() {

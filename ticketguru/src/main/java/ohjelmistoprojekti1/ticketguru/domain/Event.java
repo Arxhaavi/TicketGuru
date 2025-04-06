@@ -2,43 +2,52 @@ package ohjelmistoprojekti1.ticketguru.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 @Entity
+@Table(name = "event")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "event_id")
     private Long event_id;
 
     @NotBlank(message = "Name is mandatory")
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
+    @Column(name = "name")
     private String name;
 
     @Size(max = 500, message = "Description must be less than 500 characters")
+    @Column(name = "description")
     private String description;
 
     @NotNull(message = "Start time is mandatory")
+    @Column(name = "starttime")
     private LocalDateTime startTime;
 
     @NotNull(message = "End time is mandatory")
+    @Column(name = "endtime")
     private LocalDateTime endTime;
 
     @NotNull(message = "Location is mandatory")
     @Valid
     @ManyToOne
-    @JoinColumn(name = "locationId")
+    @JoinColumn(name = "locationid")
     private Location location;
 
     @NotNull(message = "Ticket count is mandatory")
     @Min(value = 1, message = "Ticket count must be at least 1")
+    @Column(name = "ticketcount")
     private Integer ticketCount;
 
     public Event() {

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "UserTable")
+@Table(name = "appuser")
 public class AppUser {
 
     @Id
@@ -21,7 +21,7 @@ public class AppUser {
     private String username;
 
     @NotBlank(message = "Password is required")
-    @Column(name = "password", nullable = false)
+    @Column(name = "passwordhash", nullable = false)
     @JsonIgnore
     private String passwordHash;
 
@@ -70,6 +70,5 @@ public class AppUser {
     public void setRole(String role) {
         this.role = role;
     }
-
 
 }

@@ -1,22 +1,27 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 
-
 @Entity
+@Table(name = "postalcode")
 public class Postalcode {
 
     @Id
+    @Column(name = "postalcode")
     private String postalcode;
 
     @NotBlank(message = "City is mandatory")
     @Size(min = 2, max = 100, message = "City must be between 2 and 100 characters")
+    @Column(name = "city")
     private String city;
 
     @NotBlank(message = "Country is mandatory")
     @Size(min = 2, max = 100, message = "Country must be between 2 and 100 characters")
+    @Column(name = "country")
     private String country;
 
     public Postalcode() {
