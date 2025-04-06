@@ -6,14 +6,16 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 @Entity
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ticket_id")
     private Long ticket_id;
 
     @ManyToOne
-    @JoinColumn(name = "TicketTypeId", nullable = false)
+    @JoinColumn(name = "tickettypeid", nullable = false)
     @NotNull(message = "Ticket type cannot be null")
     private TicketType ticketType;
 
@@ -23,14 +25,16 @@ public class Ticket {
     private Event event;
 
     @NotNull(message = "Ticket used cannot be null")
+    @Column(name = "ticketused")
     private boolean ticketUsed;
 
     @NotNull(message = "Price cannot be null")
-    @Min (value = 0, message = "Price cannot be negative")
+    @Min(value = 0, message = "Price cannot be negative")
+    @Column(name = "price")
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "transactionId")
+    @JoinColumn(name = "transactionid")
     @JsonIgnore
     private SalesTransaction salesTransaction;
 

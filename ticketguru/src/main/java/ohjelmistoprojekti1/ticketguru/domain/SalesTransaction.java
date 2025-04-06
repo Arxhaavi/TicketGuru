@@ -10,10 +10,12 @@ import org.hibernate.engine.internal.Cascade;
 import jakarta.validation.constraints.*;
 
 @Entity
+@Table(name = "salestransaction")
 public class SalesTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "transactionid")
     private Long transactionId;
 
     // Laitetaan päälle jos otetaan mukaan
@@ -27,16 +29,17 @@ public class SalesTransaction {
     // private Payment payment;
 
     @NotNull(message = "Transaction time is mandatory")
+    @Column(name = "transactiontime")
     private LocalDateTime transactionTime;
 
     @NotNull(message = "Sum is mandatory")
     @DecimalMin(value = "0.0", message = "Sum must be at least 0")
+    @Column(name = "sum")
     private double sum;
-
 
     @NotNull(message = "Tickets cannot be null")
     @OneToMany(mappedBy = "salesTransaction", cascade = CascadeType.ALL)
-    private List<Ticket> tickets = new ArrayList<>(); 
+    private List<Ticket> tickets = new ArrayList<>();
 
     public SalesTransaction() {
     }
