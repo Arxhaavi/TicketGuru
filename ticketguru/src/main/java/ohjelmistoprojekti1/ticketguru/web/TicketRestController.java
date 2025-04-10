@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import ohjelmistoprojekti1.ticketguru.domain.Ticket;
 import ohjelmistoprojekti1.ticketguru.domain.TicketRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -29,7 +30,7 @@ public class TicketRestController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
     }
 
-    @PutMapping("/check/{id}")
+    @PatchMapping("/check/{id}")
     public Ticket checkTicket(@PathVariable Long id) {
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
         

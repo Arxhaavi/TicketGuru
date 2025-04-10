@@ -554,3 +554,94 @@ tapahtuman id
 **Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
 
 **Vastauksen sisältö (Response body)**: -
+
+# Hae lippu id:n perusteella
+
+**Metodi**: `GET`
+
+**Polku**: `/api/tickets/{id}`
+
+**Polkuparametrit**: {id} (pakollinen): Lippu, joka halutaan hakea (lippu-id).
+  
+**Query-parametrit**: -
+
+**Toimintopyynnön sisältö (Request body)**: -
+
+**Vastauksen paluukoodi**: `200 OK` `404 Not Found`
+
+**Vastauksen sisältö (Response body)**:
+  ```json
+  {
+    "ticketType": {
+        "ticketTypeId": 1,
+        "ticketType": "Eläkeläinen"
+    },
+    "event": {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "event_Id": 1
+    },
+    "ticketUsed": true,
+    "price": 100.0,
+    "ticketId": 1
+    }
+  ```
+
+# Tarkista lippu
+
+**Metodi**: `PATCH`
+
+**Polku**: `/api/tickets/check/{id}`
+
+**Polkuparametrit**: {id} (pakollinen): Lippu, jonka käyttöä tarkistetaan (lippu-id).
+
+**Query-parametrit**: -
+
+**Toimintopyynnön sisältö (Request body)**: -
+
+**Vastauksen paluukoodi**: `200 OK`: Lippu on merkitty käytetyksi. `400 Bad Request`: Lippu on jo käytetty. `404 Not Found`: Lippua ei löytynyt annetulla id:llä.
+
+**Vastauksen sisältö (Response body)**:
+  ```json
+  {
+    "ticketType": {
+        "ticketTypeId": 2,
+        "ticketType": "Opiskelija"
+    },
+    "event": {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "event_Id": 1
+    },
+    "ticketUsed": true,
+    "price": 120.0,
+    "ticketId": 2
+}
