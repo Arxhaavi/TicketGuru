@@ -83,20 +83,20 @@
 -- INSERT INTO Postalcode (postalcode, city, country)
 -- VALUES ('33100', 'Tampere', 'Suomi');
 
--- INSERT INTO Location (name, address, postalcode, capacity)
+-- INSERT INTO Location (name, streetaddress, postalcode, capacity)
 -- VALUES ('Tampere Arena', 'Hämeenkatu 30, Tampere', 1, 5000);
 
 -- INSERT INTO Event (name, description, starttime, endtime, locationid, ticketcount)
 -- VALUES 
---     ('Jalkapallo-ottelu', 'Suomen maajoukkueen peli', '2025-06-15 18:15:00', '2025-06-15 20:15:00', 1, 2000),
---     ('Super gaala', 'Juhlagaala', '2025-06-15 18:00:00', '2025-06-15 21:00:00', 1, 500);
+--     ('Jalkapallo-ottelu', 'Suomen maajoukkueen peli', '2025-06-15 18:15:00', '2025-06-15 20:15:00', 3, 2000),
+--     ('Super gaala', 'Juhlagaala', '2025-06-15 18:00:00', '2025-06-15 21:00:00', 3, 500);
 
--- INSERT INTO TicketType (name)
+-- INSERT INTO TicketType (tickettypeid, tickettype)
 -- VALUES 
 --     ('Eläkeläinen'),
 --     ('Opiskelija');
 
 -- INSERT INTO Ticket (tickettypeid, event_id, price)
 -- VALUES
---     (1, 1, false, 100.0),
---     (2, 1, false, 120.0);
+--     (1, 1, 100.0),
+--     (2, 1, 120.0);
