@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -17,8 +19,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
 @RestController
 @RequestMapping("/api/tickets")
 @CrossOrigin(origins = "*")
@@ -26,6 +26,11 @@ public class TicketRestController {
 
     @Autowired
     private TicketRepository ticketRepository;
+
+    @GetMapping()
+    public ResponseEntity<Iterable<Ticket>> getTickets() {
+        return ResponseEntity.ok(ticketRepository.findAll());
+    }
 
     @GetMapping("/{id}")
     public Ticket getTicketById(@PathVariable Long id) {
@@ -36,7 +41,7 @@ public class TicketRestController {
     @PatchMapping("/check/{id}")
     public Ticket checkTicket(@PathVariable Long id) {
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
-        
+
         if (optionalTicket.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found");
         }
@@ -49,8 +54,15 @@ public class TicketRestController {
 
         ticket.setTicketUsed(true);
         return ticketRepository.save(ticket);
-        
+
     }
-    
+
+    @GetMapping("/tickets")
+    public ResponseEntity<Ticket> getTicketByCode(@RequestParam String code) {
+        return ticketRepository.findByCode(code)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
+    }
 
 }

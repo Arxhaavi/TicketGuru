@@ -38,16 +38,21 @@ public class Ticket {
     @JsonIgnore
     private SalesTransaction salesTransaction;
 
+    @NotNull(message = "Ticket code cannot be null")
+    @Column(name = "code", unique = true)
+    private String code;
+
     public Ticket() {
 
     }
 
-    public Ticket(TicketType ticketType, Event event, Boolean ticketUsed, Double price) {
+    public Ticket(TicketType ticketType, Event event, Boolean ticketUsed, Double price, String code) {
         this.ticketType = ticketType;
         this.event = event;
         this.ticketUsed = ticketUsed;
         this.price = price;
         this.salesTransaction = null;
+        this.code = code;
     }
 
     // Getterit ja setterit
@@ -99,9 +104,17 @@ public class Ticket {
         this.salesTransaction = salesTransaction;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         return "Ticket [ticketId=" + ticket_id + ", ticketType=" + ticketType + ", event=" + event + ", price=" + price
-                + ", ticketUsed=" + ticketUsed + "]";
+                + ", code" + code + ", ticketUsed=" + ticketUsed + "]";
     }
 }

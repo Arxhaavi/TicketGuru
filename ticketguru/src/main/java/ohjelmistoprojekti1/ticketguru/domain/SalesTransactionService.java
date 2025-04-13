@@ -1,5 +1,6 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,24 @@ public class SalesTransactionService {
     @Autowired
     private TicketTypeRepository ticketTypeRepository;
 
+    public String generateRandomCode(int length) {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        }
+        return sb.toString();
+    }
+
     // CreateSalesTransaction-funktio luo myyntitapahtuman ja siihen kuuluvat liput
     // Funktio saa parametrina SalesTransactionRequestDTO-tyyppisen request-pyynnön
     // (käyttäjän antama json objekti)
     // Funktio palauttaa SalesTransactionResponseDTO-tyyppisen responsen
     public SalesTransactionResponseDTO createSalesTransaction(SalesTransactionRequestDTO request) {
         if (request.getTickets() == null || request.getTickets().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "At least one ticket must be associated with the transaction");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "At least one ticket must be associated with the transaction");
         }
 
         // Luo uusi myyntitapahtuma
@@ -74,20 +86,25 @@ public class SalesTransactionService {
 
             Integer count = ticketRequest.getCount();
             if (count == null || count <= 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Count must be greater than 0");
-        }
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Count must be greater than 0");
+            }
 
             // haetaan requestbodyssa välitetty lippujen määrä count. Luodaan sen mukainen
             // määrä lippuja yllä hetuilla ominaisuuksilla ja tallennetaan myyntitapahtuman
             // tickets-listaan
             for (int i = 0; i < count; i++) {
                 Ticket ticket = new Ticket();
+                String code;
+                do {
+                    code = generateRandomCode(16);
+                } while (ticketRepository.existsByCode(code));
+                ticket.setCode(code);
                 ticket.setEvent(event);
                 ticket.setTicketType(ticketType);
                 ticket.setSalesTransaction(salesTransaction);
                 ticket.setPrice(price);
                 ticket.setTicketUsed(false);
-    
+
                 ticket = ticketRepository.save(ticket);
                 tickets.add(ticket);
                 totalSum = totalSum + ticket.getPrice();
