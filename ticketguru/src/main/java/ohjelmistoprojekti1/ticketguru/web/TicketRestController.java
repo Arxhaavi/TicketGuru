@@ -27,42 +27,45 @@ public class TicketRestController {
     @Autowired
     private TicketRepository ticketRepository;
 
-    @GetMapping()
-    public ResponseEntity<Iterable<Ticket>> getTickets() {
-        return ResponseEntity.ok(ticketRepository.findAll());
-    }
-
-    @GetMapping("/{id}")
-    public Ticket getTicketById(@PathVariable Long id) {
-        return ticketRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
-    }
-
-    @PatchMapping("/check/{id}")
-    public Ticket checkTicket(@PathVariable Long id) {
-        Optional<Ticket> optionalTicket = ticketRepository.findById(id);
-
-        if (optionalTicket.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found");
-        }
-
-        Ticket ticket = optionalTicket.get();
-
-        if (ticket.isTicketUsed()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket has already been used");
-        }
-
-        ticket.setTicketUsed(true);
-        return ticketRepository.save(ticket);
-
-    }
-
-    @GetMapping("/tickets")
-    public ResponseEntity<Ticket> getTicketByCode(@RequestParam String code) {
-        return ticketRepository.findByCode(code)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-
-    }
-
-}
+     // Hae kaikki liput
+     @GetMapping
+     public ResponseEntity<Iterable<Ticket>> getTickets() {
+         return ResponseEntity.ok(ticketRepository.findAll());
+     }
+ 
+     // Hae lippu koodin perusteella
+     @GetMapping(params = "code")
+     public ResponseEntity<Ticket> getTicketByCode(@RequestParam String code) {
+         Optional<Ticket> ticket = ticketRepository.findByCode(code);
+         if (ticket.isEmpty()) {
+             return ResponseEntity.notFound().build();
+         }
+         return ResponseEntity.ok(ticket.get());
+     }
+ 
+     // Hae lippu ID:n perusteella
+     @GetMapping("/{id}")
+     public Ticket getTicketById(@PathVariable Long id) {
+         return ticketRepository.findById(id)
+                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
+     }
+ 
+     // Merkitse lippu käytetyksi
+     @PatchMapping("/check/{id}")
+     public Ticket checkTicket(@PathVariable Long id) {
+         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
+ 
+         if (optionalTicket.isEmpty()) {
+             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found");
+         }
+ 
+         Ticket ticket = optionalTicket.get();
+ 
+         if (ticket.isTicketUsed()) {
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket has already been used");
+         }
+ 
+         ticket.setTicketUsed(true);
+         return ticketRepository.save(ticket);
+     }
+ }
