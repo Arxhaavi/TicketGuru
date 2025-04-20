@@ -19,7 +19,7 @@ public class EventTicketType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "event_ticket_type_id")
+    @Column(name = "eventtickettypeid")
     private Long eventTicketTypeId;
 
     @NotNull(message = "Event cannot be null")
@@ -78,7 +78,4 @@ public class EventTicketType {
         this.price = price;
     }
 
-    
-
 }
-
