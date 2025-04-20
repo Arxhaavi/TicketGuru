@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ohjelmistoprojekti1.ticketguru.domain.Event;
 import ohjelmistoprojekti1.ticketguru.domain.EventRepository;
+import ohjelmistoprojekti1.ticketguru.domain.EventTicketType;
+import ohjelmistoprojekti1.ticketguru.domain.EventTicketTypeRepository;
 import ohjelmistoprojekti1.ticketguru.domain.Location;
 import ohjelmistoprojekti1.ticketguru.domain.LocationRepository;
 import ohjelmistoprojekti1.ticketguru.domain.Postalcode;
@@ -29,7 +31,7 @@ public class TicketguruApplication {
 	@Bean
 	public CommandLineRunner loadData(LocationRepository locationRepository, EventRepository eventRepository,
 			PostalcodeRepository postalcodeRepository, TicketTypeRepository ticketTypeRepository,
-			TicketRepository ticketRepository, AppUserRepository userRepository, PasswordEncoder passwordEncoder) {
+			TicketRepository ticketRepository, AppUserRepository userRepository, EventTicketTypeRepository eventTicketTypeRepository, PasswordEncoder passwordEncoder) {
 		return (args) -> {
 			
 			  Postalcode postalcode = new Postalcode("33100", "Tampere", "Suomi");
@@ -60,6 +62,12 @@ public class TicketguruApplication {
 			  Ticket ticket2 = new Ticket(ticketType2, event1, false, 120.0, "CODE67890");
 			  ticketRepository.save(ticket1);
 			  ticketRepository.save(ticket2);
+
+			  EventTicketType eventTicketType1 = new EventTicketType(event1, ticketType1, 120);
+			  EventTicketType eventTicketType2 = new EventTicketType(event1, ticketType2, 150);
+			  eventTicketTypeRepository.save(eventTicketType1);
+			  eventTicketTypeRepository.save(eventTicketType2);
+
 			  
 			  AppUser user1 = new AppUser("user",
 			  "$2a$10$4XXGNu904amNx2Q0tPL4OOZiLP012ULGVI2a8Em4SAJGCtQG1WBJu",

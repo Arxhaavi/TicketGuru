@@ -26,6 +26,9 @@ public class SalesTransactionService {
     @Autowired
     private TicketTypeRepository ticketTypeRepository;
 
+     @Autowired
+    private EventTicketTypeRepository eventTicketTypeRepository;
+
     public String generateRandomCode(int length) {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
@@ -78,9 +81,14 @@ public class SalesTransactionService {
             TicketType ticketType = ticketTypeRepository.findById(ticketRequest.getTicketTypeId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ticket type not found"));
 
-            // haetaan requestbodyssa välitetty lipun price
-            double price = ticketRequest.getPrice();
+            // Haetaan lipun hinta EventTicketType-taulusta
+            EventTicketType eventTicketType = eventTicketTypeRepository.findByEventAndTicketType(event, ticketType)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Price not found for this event and ticket type"));
+
+
+            double price = eventTicketType.getPrice();
             if (price < 0) {
+                
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Price cannot be negative");
             }
 
