@@ -1,5 +1,7 @@
 package ohjelmistoprojekti1.ticketguru.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class EventTicketType {
     @NotNull(message = "Event cannot be null")
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
+    @JsonIgnore
     private Event event;
 
     @NotNull(message = "Ticket cannot be null")
