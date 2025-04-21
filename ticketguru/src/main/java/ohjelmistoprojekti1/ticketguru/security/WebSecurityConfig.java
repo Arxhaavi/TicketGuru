@@ -21,7 +21,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) 
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/events/**").hasAnyRole("USER", "ADMIN")
@@ -33,6 +33,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/sales/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/sales/**").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/sales/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/tickets/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/tickets/**").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.httpBasic(httpBasic -> httpBasic.realmName("TicketGuru"));
         return http.build();
@@ -53,12 +55,12 @@ public class WebSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*"); 
+        configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
-        configuration.setAllowCredentials(false); 
+        configuration.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); 
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 

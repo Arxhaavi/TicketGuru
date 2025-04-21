@@ -20,7 +20,7 @@ public class Tickete2eTest {
     @Test
     public void testGetAllTickets() throws Exception {
         mockMvc.perform(get("/api/tickets")
-                .with(httpBasic("user", "user")))
+                .with(httpBasic("USER", "USER")))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"));
     }
@@ -28,7 +28,7 @@ public class Tickete2eTest {
     @Test
     public void testGetTicketByCode() throws Exception {
         mockMvc.perform(get("/api/tickets?code=CODE12345")
-                .with(httpBasic("user", "user")))
+                .with(httpBasic("USER", "USER")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.code").value("CODE12345"));
     }
@@ -36,7 +36,7 @@ public class Tickete2eTest {
     @Test
     public void testCheckTicket() throws Exception {
         mockMvc.perform(patch("/api/tickets/check/1")
-                .with(httpBasic("admin", "admin")))
+                .with(httpBasic("ADMIN", "ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.ticketUsed").value(true));
     }

@@ -57,7 +57,7 @@ public class Event {
     private Integer ticketCount;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    private List<EventTicketType> eventTicketTypes= new ArrayList<>();
+    private List<EventTicketType> eventTicketTypes = new ArrayList<>();
 
     public Event() {
 
@@ -128,7 +128,6 @@ public class Event {
     public void setTicketCount(Integer ticketCount) {
         this.ticketCount = ticketCount;
     }
-
 
     public List<EventTicketType> getEventTicketTypes() {
         return eventTicketTypes;
