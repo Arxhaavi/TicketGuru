@@ -211,17 +211,45 @@ DELETE /api/events/{id}
 
 **Vastauksen sisältö (Response body)**:
 ```json
-{
-    "id": 1,
-    "name": "Super-gaala",
-    "description": "Juhlatilaisuus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
-    "location": {
-      "id": 1
-    },
-    "ticketCount": 500
-  }
+[
+    {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "event_Id": 1
+    }
+]
 
 ```
 ## Hae tapahtuma id:n perusteella
@@ -243,17 +271,43 @@ tapahtuman id
 **Vastauksen sisältö (Response body)**:
 
 ```json
-{
-    "id": 1,
-    "name": "Super-gaala",
-    "description": "Juhlatilaisuus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
-    "location": {
-      "id": 1
-    },
-    "ticketCount": 500
-  }
+    {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "event_Id": 1
+    }
 
 ```
 # Luo uusi Tapahtuma
