@@ -91,11 +91,11 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | Kenttä              | Tyyppi       | Kuvaus                             |
 |---------------------|-------------|-----------------------------------|
 | transactionId       | int PK       | Myyntitapahtuman yksilöllinen ID        |
-| customerId          | int FK       | Viittaus Customer-tauluun          |
-| paymentId           | int FK       | Viittaus Payment-tauluun            |
+| tickets           | Ticket       | Viittaus Ticket-tauluun            |
 | transactionTime     | datetime     | Myyntitapahtuman päivämäärä       |
 | sum     | int     | Myyntitapahtuman summa     |
 
+##Taulut, joita ei käytössä: 
 ## Customer-taulu
 | Kenttä        | Tyyppi       | Kuvaus                           |
 |--------------|-------------|---------------------------------|
@@ -127,6 +127,8 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | endTime              | datetime       | Tapahtuman loppuaika                             |
 | locationId              | int FK       | Viittaus location-tauluun                             |
 | ticketCount              | int       | Myytävien lippujen määrä                             |
+| eventTicketTypes              | EventTicketType       | Tapahtuman lipputyypit                            |
+
 
 ## Location-taulu
 | Kenttä         | Tyyppi       | Kuvaus                            |
@@ -151,8 +153,10 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | ticketTypeId | int FK  | Viittaus TicketType-tauluun |
 | eventId     | int FK  | Viittaus Event-tauluun                 |
 | ticketUsed    | boolean | Kertoo, onko lippu käytetty vai ei                 |
+| transactionid    | int FK | Myyntitapahtuma, johon lippu kuuluu                 |
+| code    | int | Lipun yksilöllinen koodi               |
 
-## Ticket-taulu
+## TicketType-taulu
 | Kenttä         | Tyyppi       | Kuvaus                            |
 |---------------|-------------|----------------------------------|
 | ticketTypeId | int PK  | Lipputyypin yksilöllinen ID |
@@ -161,6 +165,7 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 ## EventTicketTypes-taulu
 | Kenttä         | Tyyppi       | Kuvaus                            |
 |---------------|-------------|----------------------------------|
+| eventTicketTypeId   | int PK | Tapahtumaan sidotun lipputyypin yksilöllinen ID |
 | ticketTypeId   | int PK | Lipputyypin yksilöllinen ID |
 | eventId     | int PK | Tapahtuman yksilöllinen ID |
 | price        | int   | Tapahtumaan sidotun lipputyypin hinta |
