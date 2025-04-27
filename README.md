@@ -94,6 +94,7 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | customerId          | int FK       | Viittaus Customer-tauluun          |
 | paymentId           | int FK       | Viittaus Payment-tauluun            |
 | transactionTime     | datetime     | Myyntitapahtuman päivämäärä       |
+| sum     | int     | Myyntitapahtuman summa     |
 
 ## Customer-taulu
 | Kenttä        | Tyyppi       | Kuvaus                           |
