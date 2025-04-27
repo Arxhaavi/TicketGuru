@@ -87,35 +87,13 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 
 ### **Tietohakemisto**
 
+
 ## SalesTransaction-taulu
 | Kenttä              | Tyyppi       | Kuvaus                             |
 |---------------------|-------------|-----------------------------------|
 | transactionId       | int PK       | Myyntitapahtuman yksilöllinen ID        |
-| tickets           | Ticket       | Viittaus Ticket-tauluun            |
 | transactionTime     | datetime     | Myyntitapahtuman päivämäärä       |
 | sum     | int     | Myyntitapahtuman summa     |
-
-##Taulut, joita ei käytössä: 
-## Customer-taulu
-| Kenttä        | Tyyppi       | Kuvaus                           |
-|--------------|-------------|---------------------------------|
-| customerId   | int PK       | Asiakkaan yksilöllinen ID       |
-| firstName      | varchar(50)  | Asiakkaan etunimi              |
-| lastName     | varchar(50)  | Asiakkaan sukunimi             |
-| streetAddress   | varchar(50)  | Asiakkaan osoite               |
-| postalcode  | char(5)      | Viittaus Postalcode-tauluun   |
-| email        | varchar(50)  | Asiakkaan sähköpostiosoite     |
-| phoneNumber | varchar(20) | Asiakkaan puhelinnumero        |
-
-## Payment-taulu
-| Kenttä         | Tyyppi       | Kuvaus                            |
-|---------------|-------------|----------------------------------|
-| paymentId      | int PK       | Maksun yksilöllinen ID           |
-| salesTransactionId | int FK  | Viittaus SalesTransaction-tauluun |
-| paymentMethod     | varchar(50)  | Maksun tapa                     |
-| paymentStatus    | varchar(50)  | Maksun tila                     |
-| paymentTime      | datetime     | Maksun päivämäärä               |
-| paymentAmount         | double       | Maksun summa                     |
 
 ## Event-taulu
 | Kenttä              | Tyyppi       | Kuvaus                             |
@@ -127,8 +105,6 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | endTime              | datetime       | Tapahtuman loppuaika                             |
 | locationId              | int FK       | Viittaus location-tauluun                             |
 | ticketCount              | int       | Myytävien lippujen määrä                             |
-| eventTicketTypes              | EventTicketType       | Tapahtuman lipputyypit                            |
-
 
 ## Location-taulu
 | Kenttä         | Tyyppi       | Kuvaus                            |
@@ -170,6 +146,28 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | eventId     | int PK | Tapahtuman yksilöllinen ID |
 | price        | int   | Tapahtumaan sidotun lipputyypin hinta |
 
+
+## Taulut, joita ei käytössä: 
+## Customer-taulu
+| Kenttä        | Tyyppi       | Kuvaus                           |
+|--------------|-------------|---------------------------------|
+| customerId   | int PK       | Asiakkaan yksilöllinen ID       |
+| firstName      | varchar(50)  | Asiakkaan etunimi              |
+| lastName     | varchar(50)  | Asiakkaan sukunimi             |
+| streetAddress   | varchar(50)  | Asiakkaan osoite               |
+| postalcode  | char(5)      | Viittaus Postalcode-tauluun   |
+| email        | varchar(50)  | Asiakkaan sähköpostiosoite     |
+| phoneNumber | varchar(20) | Asiakkaan puhelinnumero        |
+
+## Payment-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| paymentId      | int PK       | Maksun yksilöllinen ID           |
+| salesTransactionId | int FK  | Viittaus SalesTransaction-tauluun |
+| paymentMethod     | varchar(50)  | Maksun tapa                     |
+| paymentStatus    | varchar(50)  | Maksun tila                     |
+| paymentTime      | datetime     | Maksun päivämäärä               |
+| paymentAmount         | double       | Maksun summa                     |
 
 # **Rajapinta**
 
