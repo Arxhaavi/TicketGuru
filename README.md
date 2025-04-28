@@ -87,34 +87,13 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 
 ### **Tietohakemisto**
 
+
 ## SalesTransaction-taulu
 | Kenttä              | Tyyppi       | Kuvaus                             |
 |---------------------|-------------|-----------------------------------|
 | transactionId       | int PK       | Myyntitapahtuman yksilöllinen ID        |
-| customerId          | int FK       | Viittaus Customer-tauluun          |
-| paymentId           | int FK       | Viittaus Payment-tauluun            |
 | transactionTime     | datetime     | Myyntitapahtuman päivämäärä       |
-
-## Customer-taulu
-| Kenttä        | Tyyppi       | Kuvaus                           |
-|--------------|-------------|---------------------------------|
-| customerId   | int PK       | Asiakkaan yksilöllinen ID       |
-| firstName      | varchar(50)  | Asiakkaan etunimi              |
-| lastName     | varchar(50)  | Asiakkaan sukunimi             |
-| streetAddress   | varchar(50)  | Asiakkaan osoite               |
-| postalcode  | char(5)      | Viittaus Postalcode-tauluun   |
-| email        | varchar(50)  | Asiakkaan sähköpostiosoite     |
-| phoneNumber | varchar(20) | Asiakkaan puhelinnumero        |
-
-## Payment-taulu
-| Kenttä         | Tyyppi       | Kuvaus                            |
-|---------------|-------------|----------------------------------|
-| paymentId      | int PK       | Maksun yksilöllinen ID           |
-| salesTransactionId | int FK  | Viittaus SalesTransaction-tauluun |
-| paymentMethod     | varchar(50)  | Maksun tapa                     |
-| paymentStatus    | varchar(50)  | Maksun tila                     |
-| paymentTime      | datetime     | Maksun päivämäärä               |
-| paymentAmount         | double       | Maksun summa                     |
+| sum     | int     | Myyntitapahtuman summa     |
 
 ## Event-taulu
 | Kenttä              | Tyyppi       | Kuvaus                             |
@@ -150,8 +129,10 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 | ticketTypeId | int FK  | Viittaus TicketType-tauluun |
 | eventId     | int FK  | Viittaus Event-tauluun                 |
 | ticketUsed    | boolean | Kertoo, onko lippu käytetty vai ei                 |
+| transactionid    | int FK | Myyntitapahtuma, johon lippu kuuluu                 |
+| code    | int | Lipun yksilöllinen koodi               |
 
-## Ticket-taulu
+## TicketType-taulu
 | Kenttä         | Tyyppi       | Kuvaus                            |
 |---------------|-------------|----------------------------------|
 | ticketTypeId | int PK  | Lipputyypin yksilöllinen ID |
@@ -160,10 +141,33 @@ Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqE
 ## EventTicketTypes-taulu
 | Kenttä         | Tyyppi       | Kuvaus                            |
 |---------------|-------------|----------------------------------|
+| eventTicketTypeId   | int PK | Tapahtumaan sidotun lipputyypin yksilöllinen ID |
 | ticketTypeId   | int PK | Lipputyypin yksilöllinen ID |
 | eventId     | int PK | Tapahtuman yksilöllinen ID |
 | price        | int   | Tapahtumaan sidotun lipputyypin hinta |
 
+
+## Taulut, joita ei käytössä: 
+## Customer-taulu
+| Kenttä        | Tyyppi       | Kuvaus                           |
+|--------------|-------------|---------------------------------|
+| customerId   | int PK       | Asiakkaan yksilöllinen ID       |
+| firstName      | varchar(50)  | Asiakkaan etunimi              |
+| lastName     | varchar(50)  | Asiakkaan sukunimi             |
+| streetAddress   | varchar(50)  | Asiakkaan osoite               |
+| postalcode  | char(5)      | Viittaus Postalcode-tauluun   |
+| email        | varchar(50)  | Asiakkaan sähköpostiosoite     |
+| phoneNumber | varchar(20) | Asiakkaan puhelinnumero        |
+
+## Payment-taulu
+| Kenttä         | Tyyppi       | Kuvaus                            |
+|---------------|-------------|----------------------------------|
+| paymentId      | int PK       | Maksun yksilöllinen ID           |
+| salesTransactionId | int FK  | Viittaus SalesTransaction-tauluun |
+| paymentMethod     | varchar(50)  | Maksun tapa                     |
+| paymentStatus    | varchar(50)  | Maksun tila                     |
+| paymentTime      | datetime     | Maksun päivämäärä               |
+| paymentAmount         | double       | Maksun summa                     |
 
 # **Rajapinta**
 
@@ -207,17 +211,45 @@ DELETE /api/events/{id}
 
 **Vastauksen sisältö (Response body)**:
 ```json
-{
-    "id": 1,
-    "name": "Super-gaala",
-    "description": "Juhlatilaisuus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
-    "location": {
-      "id": 1
-    },
-    "ticketCount": 500
-  }
+[
+    {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "event_Id": 1
+    }
+]
 
 ```
 ## Hae tapahtuma id:n perusteella
@@ -239,17 +271,43 @@ tapahtuman id
 **Vastauksen sisältö (Response body)**:
 
 ```json
-{
-    "id": 1,
-    "name": "Super-gaala",
-    "description": "Juhlatilaisuus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
-    "location": {
-      "id": 1
-    },
-    "ticketCount": 500
-  }
+    {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "event_Id": 1
+    }
 
 ```
 # Luo uusi Tapahtuma
