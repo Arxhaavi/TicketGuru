@@ -41,6 +41,11 @@ public class SalesTransaction {
     @OneToMany(mappedBy = "salesTransaction", cascade = CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 
+    @AssertTrue(message = "Sales transaction must have at least one ticket")
+    public boolean hasTickets() {
+        return tickets != null && !tickets.isEmpty();
+    }
+
     public SalesTransaction() {
     }
 

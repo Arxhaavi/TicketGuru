@@ -38,12 +38,18 @@ public class Event {
     private String description;
 
     @NotNull(message = "Start time is mandatory")
+    @FutureOrPresent(message = "Start time must be in the future or present")
     @Column(name = "starttime")
     private LocalDateTime startTime;
 
     @NotNull(message = "End time is mandatory")
     @Column(name = "endtime")
     private LocalDateTime endTime;
+
+    @AssertTrue(message = "End time must be after start time")
+    public boolean isEndTimeAfterStartTime() {
+        return endTime == null || startTime == null || endTime.isAfter(startTime);
+    }
 
     @NotNull(message = "Location is mandatory")
     @Valid
