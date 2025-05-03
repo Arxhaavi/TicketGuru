@@ -2,7 +2,8 @@ package ohjelmistoprojekti1.ticketguru;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import ohjelmistoprojekti1.ticketguru.domain.Event;
+
+import ohjelmistoprojekti1.ticketguru.model.Event;
 
 public class EventTests {
 

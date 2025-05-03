@@ -1,7 +1,6 @@
 package ohjelmistoprojekti1.ticketguru;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 
 import java.util.Optional;
 
@@ -12,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.Transactional;
 
-import ohjelmistoprojekti1.ticketguru.domain.Event;
-import ohjelmistoprojekti1.ticketguru.domain.EventRepository;
+import ohjelmistoprojekti1.ticketguru.model.Event;
+import ohjelmistoprojekti1.ticketguru.repository.EventRepository;
 
 @SpringBootTest
 @AutoConfigureTestDatabase
