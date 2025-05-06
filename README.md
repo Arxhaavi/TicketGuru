@@ -328,7 +328,8 @@ tapahtuman id
         "description": "Suomen maajoukkueen peli",
         "startTime": "2025-06-15T18:15:00",
         "endTime": "2025-06-15T20:15:00",
-        "location": {
+         "location": {
+            "locationId": 1,
             "name": "Tampere Arena",
             "streetAddress": "Hämeenkatu 30, Tampere",
             "postalcode": {
@@ -336,8 +337,7 @@ tapahtuman id
                 "city": "Tampere",
                 "country": "Suomi"
             },
-            "capacity": 5000,
-            "location_Id": 1
+            "capacity": 5000
         },
         "ticketCount": 2000
         
@@ -349,15 +349,24 @@ tapahtuman id
 **Vastauksen sisältö (Response body)**: 
 ```json
 {
-    "id": 1,
-    "name": "Super-gaala",
-    "description": "Juhlatilaisuus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
+    "name": "Uusi tapahtuma",
+    "description": "Suomen maajoukkueen peli",
+    "startTime": "2025-06-15T18:15:00",
+    "endTime": "2025-06-15T20:15:00",
     "location": {
-      "id": 1
+        "locationId": 1,
+        "name": "Tampere Arena",
+        "streetAddress": "Hämeenkatu 30, Tampere",
+        "postalcode": {
+            "postalcode": "33100",
+            "city": "Tampere",
+            "country": "Suomi"
+        },
+        "capacity": 5000
     },
-    "ticketCount": 500
+    "ticketCount": 2000,
+    "eventTicketTypes": [],
+    "event_Id": 6
   }
 
 ```
@@ -377,24 +386,24 @@ tapahtuman id
 **Toimintopyynnön sisältö (Request body)** : 
 ```json
 {
-        "name": "Uusi tapahtuma",
-        "description": "Päivitetty kuvaus.",
-        "startTime": "2025-06-15T18:15:00",
-        "endTime": "2025-06-15T20:15:00",
-        "location": {
-            "name": "Tampere Arena",
-            "streetAddress": "Hämeenkatu 30, Tampere",
-            "postalcode": {
-                "postalcode": "33100",
-                "city": "Tampere",
-                "country": "Suomi"
-            },
-            "capacity": 5000,
-            "location_Id": 1
+    "name": "Muokattu tapahtuma",
+    "description": "Suomen maajoukkueen peli",
+    "startTime": "2025-06-15T18:15:00",
+    "endTime": "2025-06-15T20:15:00",
+    "location": {
+        "locationId": 1,
+        "name": "Tampere Arena",
+        "streetAddress": "Hämeenkatu 30, Tampere",
+        "postalcode": {
+            "postalcode": "33100",
+            "city": "Tampere",
+            "country": "Suomi"
         },
-        "ticketCount": 2000
-        
-    }
+        "capacity": 5000
+    },
+    "ticketCount": 2000
+   
+}
 
 ```
 
@@ -403,15 +412,24 @@ tapahtuman id
 **Vastauksen sisältö (Response body)**: 
 ```json
 {
-    "id": 1,
-    "name": "Super-gaala",
-    "description": "Uudistettu kuvaus",
-    "startTime": "2025-06-15 18:00",
-    "endTime": "2025-06-15 21:00",
+    "name": "Muokattu tapahtuma",
+    "description": "Suomen maajoukkueen peli",
+    "startTime": "2025-06-15T18:15:00",
+    "endTime": "2025-06-15T20:15:00",
     "location": {
-      "id": 1
+        "locationId": 1,
+        "name": "Tampere Arena",
+        "streetAddress": "Hämeenkatu 30, Tampere",
+        "postalcode": {
+            "postalcode": "33100",
+            "city": "Tampere",
+            "country": "Suomi"
+        },
+        "capacity": 5000
     },
-    "ticketCount": 500
+    "ticketCount": 2000,
+    "eventTicketTypes": [],
+    "event_Id": 4
 }
 ```
 
@@ -437,7 +455,29 @@ tapahtuman id
 
 **Vastauksen paluukoodi** : `200 OK` `404 Not found` 
 
-**Vastauksen sisältö (Response body)**: -
+**Vastauksen sisältö (Response body)**: 
+```json
+{
+    "name": "Muokattu tapahtuma",
+    "description": "Vuoden suurin juhlatapahtuma",
+    "startTime": "2025-06-15T18:15:00",
+    "endTime": "2025-06-15T20:15:00",
+    "location": {
+        "locationId": 1,
+        "name": "Tampere Arena",
+        "streetAddress": "Hämeenkatu 30, Tampere",
+        "postalcode": {
+            "postalcode": "33100",
+            "city": "Tampere",
+            "country": "Suomi"
+        },
+        "capacity": 5000
+    },
+    "ticketCount": 2000,
+    "eventTicketTypes": [],
+    "event_Id": 4
+}
+```
 
 # Poista tapahtuma id:n perusteella
 
