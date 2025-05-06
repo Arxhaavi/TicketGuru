@@ -14,6 +14,7 @@ import ohjelmistoprojekti1.ticketguru.model.Ticket;
 import ohjelmistoprojekti1.ticketguru.repository.TicketRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,5 +67,15 @@ public class TicketRestController {
 
         ticket.setTicketUsed(true);
         return ticketRepository.save(ticket);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTicket(@PathVariable Long id) {
+        if (ticketRepository.existsById(id)) {
+            ticketRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found");
+        }
     }
 }
