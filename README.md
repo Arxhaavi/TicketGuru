@@ -653,6 +653,74 @@ tapahtuman id
 
 **Vastauksen sisältö (Response body)**: -
 
+
+# Hae kaikki liput
+**Metodi**: `GET`
+
+**Polku**: `/api/tickets`
+
+**Polkuparametrit**: -
+  
+**Query-parametrit**: -
+
+**Toimintopyynnön sisältö (Request body)**: -
+
+**Vastauksen paluukoodi**: `200 OK` 
+
+**Vastauksen sisältö (Response body)**:
+  ```json
+  [
+    {
+        "ticketType": {
+            "ticketTypeId": 1,
+            "ticketType": "Eläkeläinen"
+        },
+        "event": {
+            "name": "Jalkapallo-ottelu",
+            "description": "Suomen maajoukkueen peli",
+            "startTime": "2025-06-15T18:15:00",
+            "endTime": "2025-06-15T20:15:00",
+            "location": {
+                "locationId": 1,
+                "name": "Tampere Arena",
+                "streetAddress": "Hämeenkatu 30, Tampere",
+                "postalcode": {
+                    "postalcode": "33100",
+                    "city": "Tampere",
+                    "country": "Suomi"
+                },
+                "capacity": 5000
+            },
+            "ticketCount": 2000,
+            "eventTicketTypes": [
+                {
+                    "eventTicketTypeId": 1,
+                    "ticketType": {
+                        "ticketTypeId": 1,
+                        "ticketType": "Eläkeläinen"
+                    },
+                    "price": 120.0
+                },
+                {
+                    "eventTicketTypeId": 2,
+                    "ticketType": {
+                        "ticketTypeId": 2,
+                        "ticketType": "Opiskelija"
+                    },
+                    "price": 150.0
+                }
+            ],
+            "endTimeAfterStartTime": true,
+            "event_Id": 1
+        },
+        "ticketUsed": false,
+        "code": "CODE12345",
+        "ticketId": 1
+    }
+]
+  ```
+
+
 # Hae lippu id:n perusteella
 
 **Metodi**: `GET`
@@ -691,13 +759,98 @@ tapahtuman id
             "capacity": 5000
         },
         "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "endTimeAfterStartTime": true,
+        "event_Id": 1
+    },
+    "ticketUsed": false,
+    "code": "CODE12345",
+    "ticketId": 1
+}
+  ```
+
+# Hae lippu koodin perusteella
+
+**Metodi**: `GET`
+
+**Polku**: `/api/tickets?code={code}`
+
+**Polkuparametrit**: -
+  
+**Query-parametrit**: {code}: lipun yksilöllinen koodi
+
+**Toimintopyynnön sisältö (Request body)**: -
+
+**Vastauksen paluukoodi**: `200 OK` `404 Not Found`
+
+**Vastauksen sisältö (Response body)**:
+  ```json
+ {
+    "ticketType": {
+        "ticketTypeId": 1,
+        "ticketType": "Eläkeläinen"
+    },
+    "event": {
+        "name": "Jalkapallo-ottelu",
+        "description": "Suomen maajoukkueen peli",
+        "startTime": "2025-06-15T18:15:00",
+        "endTime": "2025-06-15T20:15:00",
+        "location": {
+            "locationId": 1,
+            "name": "Tampere Arena",
+            "streetAddress": "Hämeenkatu 30, Tampere",
+            "postalcode": {
+                "postalcode": "33100",
+                "city": "Tampere",
+                "country": "Suomi"
+            },
+            "capacity": 5000
+        },
+        "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "endTimeAfterStartTime": true,
         "event_Id": 1
     },
     "ticketUsed": true,
-    "price": 100.0,
+    "code": "CODE12345",
     "ticketId": 1
-    }
+}
   ```
+
 
 # Tarkista lippu
 
@@ -709,7 +862,12 @@ tapahtuman id
 
 **Query-parametrit**: -
 
-**Toimintopyynnön sisältö (Request body)**: -
+**Toimintopyynnön sisältö (Request body)**: 
+ ```json
+{
+    "ticketUsed": true
+}
+  ```
 
 **Vastauksen paluukoodi**: `200 OK`: Lippu on merkitty käytetyksi. `400 Bad Request`: Lippu on jo käytetty. `404 Not Found`: Lippua ei löytynyt annetulla id:llä.
 
@@ -737,9 +895,46 @@ tapahtuman id
             "capacity": 5000
         },
         "ticketCount": 2000,
+        "eventTicketTypes": [
+            {
+                "eventTicketTypeId": 1,
+                "ticketType": {
+                    "ticketTypeId": 1,
+                    "ticketType": "Eläkeläinen"
+                },
+                "price": 120.0
+            },
+            {
+                "eventTicketTypeId": 2,
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "price": 150.0
+            }
+        ],
+        "endTimeAfterStartTime": true,
         "event_Id": 1
     },
     "ticketUsed": true,
-    "price": 120.0,
+    "code": "CODE67890",
     "ticketId": 2
 }
+ ```
+
+# Poista lippu id:n perusteella
+
+**Metodi** : `DELETE`
+
+**Polku** : `/api/tickets/{id}`
+
+**Polkuparametrit** : {id}
+(lipun id)
+
+**Query-parametrit** : -
+
+**Toimintopyynnön sisältö (Request body)** : -
+
+**Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
+
+**Vastauksen sisältö (Response body)**: -
