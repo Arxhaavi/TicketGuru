@@ -27,7 +27,7 @@ public class Event {
     @Column(name = "event_id")
     private Long event_id;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotNull(message = "Name is mandatory")
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     @Column(name = "name")
     private String name;
