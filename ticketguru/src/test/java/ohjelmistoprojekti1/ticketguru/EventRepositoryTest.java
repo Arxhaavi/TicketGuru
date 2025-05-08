@@ -23,6 +23,7 @@ public class EventRepositoryTest {
     @Autowired
     private EventRepository eventRepository;
 
+    // Integraatiotesti jossa testataan tapahtuman luomista ja tallentamista
     @Test
     void shouldSaveAndRetrieveEvent() {
         Event event = new Event();
@@ -37,6 +38,7 @@ public class EventRepositoryTest {
         assertEquals("Tapahtuma5000", found.get().getName());
     }
 
+    // Integraatiotesti jossa testataan tapahtuman poistamista
     @Test
     void shouldDeleteEvent() {
         Event event = new Event();
