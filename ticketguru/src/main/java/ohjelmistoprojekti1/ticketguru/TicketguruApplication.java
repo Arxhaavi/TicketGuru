@@ -1,5 +1,7 @@
 package ohjelmistoprojekti1.ticketguru;
 
+import java.time.LocalDateTime;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +13,7 @@ import ohjelmistoprojekti1.ticketguru.model.Event;
 import ohjelmistoprojekti1.ticketguru.model.EventTicketType;
 import ohjelmistoprojekti1.ticketguru.model.Location;
 import ohjelmistoprojekti1.ticketguru.model.Postalcode;
+import ohjelmistoprojekti1.ticketguru.model.SalesTransaction;
 import ohjelmistoprojekti1.ticketguru.model.Ticket;
 import ohjelmistoprojekti1.ticketguru.model.TicketType;
 import ohjelmistoprojekti1.ticketguru.repository.AppUserRepository;
@@ -20,6 +23,7 @@ import ohjelmistoprojekti1.ticketguru.repository.LocationRepository;
 import ohjelmistoprojekti1.ticketguru.repository.PostalcodeRepository;
 import ohjelmistoprojekti1.ticketguru.repository.TicketRepository;
 import ohjelmistoprojekti1.ticketguru.repository.TicketTypeRepository;
+import ohjelmistoprojekti1.ticketguru.repository.SalesTransactionRepository;
 
 @SpringBootApplication
 public class TicketguruApplication {
@@ -28,11 +32,12 @@ public class TicketguruApplication {
 		SpringApplication.run(TicketguruApplication.class, args);
 	}
 
+	// Testidataan h2 tietokannan alustamista ja testidatan lisäämistä
 	@Bean
 	public CommandLineRunner loadData(LocationRepository locationRepository, EventRepository eventRepository,
 			PostalcodeRepository postalcodeRepository, TicketTypeRepository ticketTypeRepository,
 			TicketRepository ticketRepository, AppUserRepository userRepository,
-			EventTicketTypeRepository eventTicketTypeRepository, PasswordEncoder passwordEncoder) {
+			EventTicketTypeRepository eventTicketTypeRepository, SalesTransactionRepository salesTransactionRepository, PasswordEncoder passwordEncoder) {
 		return (args) -> {
 
 			Postalcode postalcode = new Postalcode("33100", "Tampere", "Suomi");
@@ -85,6 +90,11 @@ public class TicketguruApplication {
 					150);
 			eventTicketTypeRepository.save(eventTicketType1);
 			eventTicketTypeRepository.save(eventTicketType2);
+
+			SalesTransaction transaction1 = new SalesTransaction();
+        	transaction1.setTransactionTime(LocalDateTime.now());
+        	transaction1.setSum(100.0);
+        	salesTransactionRepository.save(transaction1);
 
 			/*
 			 * AppUser user1 = new AppUser("user",

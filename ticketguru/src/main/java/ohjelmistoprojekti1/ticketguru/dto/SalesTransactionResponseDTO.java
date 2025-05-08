@@ -3,17 +3,16 @@ package ohjelmistoprojekti1.ticketguru.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+// Uuden myyntitapahtuman DTO-luokka, joka sisältää tiedot lipuista ja myyntitapahtumasta
 public class SalesTransactionResponseDTO {
     private Long salesTransactionId;
     private List<Long> ticketIds;
-    private double totalSum;
     private LocalDateTime transactionTime;
 
-    public SalesTransactionResponseDTO(Long salesTransactionId, List<Long> ticketIds, double totalSum,
+    public SalesTransactionResponseDTO(Long salesTransactionId, List<Long> ticketIds,
             LocalDateTime transactionTime) {
         this.salesTransactionId = salesTransactionId;
         this.ticketIds = ticketIds;
-        this.totalSum = totalSum;
         this.transactionTime = transactionTime;
     }
 
@@ -31,14 +30,6 @@ public class SalesTransactionResponseDTO {
 
     public void setTicketIds(List<Long> ticketIds) {
         this.ticketIds = ticketIds;
-    }
-
-    public double getTotalSum() {
-        return totalSum;
-    }
-
-    public void setTotalSum(double totalSum) {
-        this.totalSum = totalSum;
     }
 
     public LocalDateTime getTransactionTime() {

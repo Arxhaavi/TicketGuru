@@ -1,4 +1,4 @@
-package ohjelmistoprojekti1.ticketguru.contoller;
+package ohjelmistoprojekti1.ticketguru.controller;
 
 import java.util.Optional;
 import java.util.Set;
@@ -30,24 +30,28 @@ public class EventRestController {
     @Autowired
     private Validator validator;
 
+    // Hakee kaikki tapahtumat
     @GetMapping
     public ResponseEntity<Iterable<Event>> getAllEvents() {
         return ResponseEntity.ok(eventRepository.findAll());
 
     }
 
+    // Hakee tapahtuman id:n perusteella
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
         return eventRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
     }
 
+    // Lisää uuden tapahtuman
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Event createEvent(@Valid @RequestBody Event event) {
         return eventRepository.save(event);
     }
 
+    // Päivittää tapahtuman id:n perusteella
     @PutMapping("/{id}")
     public Event updateEvent(@PathVariable Long id, @Valid @RequestBody Event event) {
         if (!eventRepository.existsById(id)) {
@@ -57,6 +61,7 @@ public class EventRestController {
         return eventRepository.save(event);
     }
 
+    // Päivittää tapahtuman id:n perusteella, mutta vain osittain
     @PatchMapping("/{id}")
     public Event patchEvent(@PathVariable Long id, @Valid @RequestBody Event event, BindingResult bindingResult) {
         if (!eventRepository.existsById(id)) {
@@ -93,6 +98,7 @@ public class EventRestController {
         return eventRepository.save(existingEvent);
     }
 
+    // Poistaa tapahtuman id:n perusteella
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         Optional<Event> event = eventRepository.findById(id);
@@ -109,6 +115,7 @@ public class EventRestController {
         }
     }
 
+    // Validoi tapahtuman kentät, jotta PATCH-pyyntö ei aiheuta virheitä
     private void validatePatchFields(Event event) {
         Set<ConstraintViolation<Event>> violations = validator.validate(event);
 

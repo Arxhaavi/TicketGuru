@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+// TicketType-luokka, joka edustaa lippujen tietoja tietokannassa
 @Entity
 @Table(name = "tickettype")
 public class TicketType {

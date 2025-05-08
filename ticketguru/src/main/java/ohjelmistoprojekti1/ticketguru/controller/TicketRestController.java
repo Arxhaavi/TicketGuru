@@ -1,4 +1,4 @@
-package ohjelmistoprojekti1.ticketguru.contoller;
+package ohjelmistoprojekti1.ticketguru.controller;
 
 import java.util.Optional;
 
@@ -69,6 +69,7 @@ public class TicketRestController {
         return ticketRepository.save(ticket);
     }
 
+    // Poista lippu ID:n perusteella
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable Long id) {
         if (ticketRepository.existsById(id)) {

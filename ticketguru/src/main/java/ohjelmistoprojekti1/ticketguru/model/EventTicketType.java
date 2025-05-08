@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
+// Tapahtumalipputyyppi entiteettiluokka
 @Entity
 @Table(name = "eventtickettype")
 public class EventTicketType {

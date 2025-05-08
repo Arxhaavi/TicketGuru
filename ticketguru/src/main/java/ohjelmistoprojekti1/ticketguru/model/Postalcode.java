@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 
+// Postalcode-luokka, joka edustaa postinumerotietoja tietokannassa
 @Entity
 @Table(name = "postalcode")
 public class Postalcode {

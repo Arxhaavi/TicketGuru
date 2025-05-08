@@ -1,4 +1,4 @@
-package ohjelmistoprojekti1.ticketguru.contoller;
+package ohjelmistoprojekti1.ticketguru.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +36,7 @@ public class SalesTransactionRestController {
     @Autowired
     TicketRepository ticketRepository;
 
+    // Hakee kaikki myyntitapahtumat
     @GetMapping
     public ResponseEntity<Iterable<SalesTransaction>> getAllEvents() {
         Iterable<SalesTransaction> transactions = salesTransactionRepository.findAll();
@@ -45,6 +46,7 @@ public class SalesTransactionRestController {
         return ResponseEntity.ok(transactions);
     }
 
+    // Hakee myyntitapahtuman id:n perusteella
     @GetMapping("/{id}")
     public SalesTransaction getSalesTransactionById(@PathVariable Long id) {
         return salesTransactionRepository.findById(id)
@@ -56,6 +58,7 @@ public class SalesTransactionRestController {
     // Controller luo SalesTransactionResponseDTO-muotoisen responsen, joka haetaan
     // SalesTransactionService-luokasta,
     // ja lopuksi palauttaa responsen
+    // Lisää uuden myyntitapahtuman
     @PostMapping
     public ResponseEntity<SalesTransactionResponseDTO> createSalesTransaction(
             @Valid @RequestBody SalesTransactionRequestDTO request) {
@@ -63,6 +66,7 @@ public class SalesTransactionRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    // Poistaa myyntitapahtuman id:n perusteella
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSalesTransaction(@PathVariable Long id) {
         if (!salesTransactionRepository.existsById(id)) {

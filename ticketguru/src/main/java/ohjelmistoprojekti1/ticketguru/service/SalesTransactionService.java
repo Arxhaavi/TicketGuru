@@ -139,6 +139,6 @@ public class SalesTransactionService {
         return new SalesTransactionResponseDTO(
                 salesTransaction.getTransactionId(),
                 tickets.stream().map(Ticket::getTicketId).toList(),
-                totalSum, salesTransaction.getTransactionTime());
+                salesTransaction.getTransactionTime());
     }
 }

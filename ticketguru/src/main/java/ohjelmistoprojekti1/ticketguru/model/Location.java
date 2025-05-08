@@ -17,6 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
+// Location-luokka, joka edustaa tapahtumapaikan tietoja tietokannassa
 @Entity
 @Table(name = "location")
 public class Location {

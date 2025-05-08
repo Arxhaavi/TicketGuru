@@ -14,6 +14,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+// Sovelluksen tietoturva-asetukset Spring Securityn avulla
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -23,6 +24,8 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
+
+                // Määritetään sovelluksen endpointtien käyttöoikeudet
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/events/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/events/**").hasRole("ADMIN")
@@ -40,17 +43,21 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+
+    // Salasanan koodaus BCryptPasswordEncoder-luokan avulla
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Autentikointimanageri, joka käyttää Spring Securityn oletusasetuksia autentikointiprosessissa
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    // CORS-asetukset, jotka sallivat kaikki alkuperät, menetelmät ja otsikot
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

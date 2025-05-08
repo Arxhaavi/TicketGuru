@@ -3,6 +3,8 @@ package ohjelmistoprojekti1.ticketguru.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
+// DTO-luokka lipun ostopyynnölle
+// Käytetään lipun ostamisen yhteydessä, jotta voidaan validoida pyyntö ennen sen käsittelyä
 public class TicketPurchaseRequestDTO {
 
     @NotNull(message = "Event ID cannot be null")

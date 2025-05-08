@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+// Ticket-luokka, joka edustaa lippujen tietoja tietokannassa
 @Entity
 @Table(name = "ticket")
 public class Ticket {

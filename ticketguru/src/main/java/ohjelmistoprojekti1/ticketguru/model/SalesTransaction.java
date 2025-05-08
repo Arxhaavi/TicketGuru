@@ -7,6 +7,7 @@ import java.util.List;
 
 import jakarta.validation.constraints.*;
 
+// SalesTransaction-luokka, joka edustaa myyntitapahtuman tietoja tietokannassa
 @Entity
 @Table(name = "salestransaction")
 public class SalesTransaction {

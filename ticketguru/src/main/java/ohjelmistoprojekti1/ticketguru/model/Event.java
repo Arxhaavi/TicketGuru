@@ -17,6 +17,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
+// Event-luokka, joka edustaa tapahtumatietoja tietokannassa
 @Entity
 @Table(name = "event")
 public class Event {
