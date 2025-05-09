@@ -947,25 +947,26 @@ tapahtuman id
 ## Järjestelmän komponentit
 **Backend**
 -	Teknologia: Java Spring Boot
--	Sijainti: Rahti-palvelinympäristö tai lokaali kehitysympäristö
--	Backend sisältää liiketoimintalogiikan, tietokantayhteydet ja REST-rajapinnat
+-	Sijainti: Rahti-ympäristö tai lokaali kehitysympäristö
   
 **Tietokanta**
 -	Teknologia: H2 kehitysvaiheessa ja PostgreSQL tuotannossa
+-	Sijainti: Rahti-ympäristö tai lokaali kehitysympäristö
 
 **Frontend**
 -	Teknologia: ReactJS
--	Käytetään myyntitapahtumien luomisen demonstrointiin 
+-	Sijainti: 
+-	Frontend-demoa käytetään myyntitapahtumien luomisen demonstrointiin 
 
-**Yhteydet ja kommunikointi**
--	Backend ja frontend ovat yhteydessä JSON-muotoisten HTTP-pyyntöjen ja -vastausten avulla REST-rajapintojen kautta
--	Backend hyödyntää JPA:ta ja Hibernatea tietokantakyselyiden ja objektien välisten yhteyksien hallintaan sekä tiedon tallentamiseen tietokantaan
+
+
+Backend ja frontend ovat yhteydessä HTTP-pyyntöjen ja -vastausten avulla REST-rajapintojen kautta. Backend on yhteydessä tietokantaan ja käsittelee tiedon tallennuksen ja haun JPA:n avulla.
 
 
 ## Turvallisuus
-Sovelluksen autentikointi ja autorisointi toteutetaan Spring Securityn avulla. Kaikki endpointit on suojattu HTTP Basic -autentikoinnilla ja vaativat tunnistautumista. Autentikoimattomat pyynnöt palauttavat 401 unauthorized -virheilmoituksen. 
+Sovelluksen autentikoinnissa ja autorisoinnissa on hyödynnetty Spring Securitya. Kaikki endpointit on suojattu HTTP Basic-autentikoinnilla ja vaativat tunnistautumista. Autentikoimattomat pyynnöt palauttavat 401 unauthorized -virheilmoituksen. 
 
-Sovellukseen on kovakoodattu kaksi käyttäjää, admin ja user. Salasanat tallennetaan tietokantaan bcrypt-algoritmilla hajautettuina. 
+Sovellukseen on asetettu kaksi käyttäjää, "admin" ja "user". Salasanat tallennetaan tietokantaan bcrypt-algoritmilla hajautettuina. 
 Käyttäjien oikeudet perustuvat rooleihin. Admin-käyttäjällä on enemmän hallinnollisia oikeuksia, kuten oikeus luoda ja poistaa tapahtumia, kun taas user-käyttäjän oikeudet rajoittuvat perustoimintoihin, kuten tietojen hakemiseen ja lipunmyyntiin.
 
 Kehitysvaiheessa CORS on sallittu kaikista lähteistä, jotta mahdollistetaan sujuva front end-kehitys. 
