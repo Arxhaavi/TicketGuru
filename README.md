@@ -950,7 +950,7 @@ tapahtuman id
 -	Sijainti: Rahti-ympäristö tai lokaali kehitysympäristö
   
 **Tietokanta**
--	Teknologia: H2 kehitysvaiheessa ja PostgreSQL tuotannossa
+-	Teknologia: PostgreSQL tuotannossa ja H2 kehitysvaiheessa
 -	Sijainti: Rahti-ympäristö tai lokaali kehitysympäristö
 
 **Frontend**
