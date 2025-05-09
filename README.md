@@ -10,6 +10,11 @@ Tiimi: Artturi Haavisto, Veera Heikkinen, Eetu Pärnänen, Riku Roivanen
 - [Rajapinta](#rajapinta)
   - [Tapahtuma](#hae-kaikki-tapahtumat)
   - [Myyntitapahtuma](#hae-kaikki-myyntitapahtumat)
+  - [Lippu](#hae-kaikki-liput)
+- [Tekninen kuvaus](#tekninen-kuvaus)
+- [Testaus](#testaus)
+- [Asennustiedot](#asennustiedot)
+- [Käynnistys- ja käyttöohje](#käynnistys--ja-käyttöohje)
 
 ## Johdanto
 TicketGuru on lipunmyyntijärjestelmä, joka on suunniteltu helpottamaan tapahtumalippujen myyntiä ja hallintaa. Järjestelmän tilaajana on lipputoimisto, joka myy lippuja myyntipisteissään ja tapahtumien ovella.
@@ -938,3 +943,76 @@ tapahtuman id
 **Vastauksen paluukoodi** : `204 No Content` `404 Not Found ` 
 
 **Vastauksen sisältö (Response body)**: -
+
+
+# Tekninen kuvaus
+
+## Järjestelmän komponentit
+**Backend**
+-	Teknologia: Java Spring Boot
+-	Sijainti: Rahti-palvelinympäristö tai lokaali kehitysympäristö
+-	Backend sisältää liiketoimintalogiikan, tietokantayhteydet ja REST-rajapinnat
+  
+**Tietokanta**
+-	Teknologia: H2 kehitysvaiheessa ja PostgreSQL tuotannossa
+
+**Frontend**
+-	Teknologia: ReactJS
+-	Käytetään myyntitapahtumien luomisen demonstrointiin 
+
+**Yhteydet ja kommunikointi**
+-	Backend ja frontend ovat yhteydessä JSON-muotoisten HTTP-pyyntöjen ja -vastausten avulla REST-rajapintojen kautta
+-	Backend hyödyntää JPA:ta ja Hibernatea tietokantakyselyiden ja objektien välisten yhteyksien hallintaan sekä tiedon tallentamiseen tietokantaan
+
+### **Backend rakenne**
+- Controller-kerros ottaa vastaan HTTP-pyynnöt ja välittää ne joko service-kerrokseen tai suoraan repository-kerrokseen.
+- Service-kerros sisältää liiketoimintalogiikan myyntitapahtumien yhteydessä. Se luo myyntitapahtuman ja liput sekä liittää liput myyntitapahtumaan.
+- Repository-kerros vastaa tietojen hakemisesta ja tallentamisesta tietokantaan.
+
+DTO-luokkia (Data Transfer Object) käytetään myyntitapahtumien yhteydessä siirtämään vain tarpeellinen tieto kerrosten välillä. DTO-luokkien avulla voidaan luoda myyntitapahtuma ja siihen kuuluvat liput yhdellä HTTP-pyynnöllä.
+-	SalesTransactionRequestDTO – Kuvaa uuden myyntitapahtuman tiedot sekä siihen kuuluvat lippuostot
+-	TicketPurchaseRequestDTO – Kuvaa ostettavien lippujen tiedot
+-	SalesTransactionResponseDTO – Myyntitapahtuman luonnissa palautettava vastaus, joka sisältää luodut liput ja myyntitapahtuman tiedot
+
+
+## Turvallisuus
+Sovelluksen autentikointi ja autorisointi toteutetaan Spring Securityn avulla. Kaikki endpointit on suojattu HTTP Basic -autentikoinnilla ja vaativat tunnistautumista. Autentikoimattomat pyynnöt palauttavat 401 unauthorized -virheilmoituksen. 
+
+Sovellukseen on kovakoodattu kaksi käyttäjää, admin ja user. Salasanat tallennetaan tietokantaan bcrypt-algoritmilla hajautettuina. 
+Käyttäjien oikeudet perustuvat rooleihin. Admin-käyttäjällä on enemmän hallinnollisia oikeuksia, kuten oikeus luoda ja poistaa tapahtumia, kun taas user-käyttäjän oikeudet rajoittuvat perustoimintoihin, kuten tietojen hakemiseen ja lipunmyyntiin.
+
+Kehitysvaiheessa CORS on sallittu kaikista lähteistä, jotta mahdollistetaan sujuva front end-kehitys. 
+
+## Testaus
+
+Tässä kohdin selvitetään, miten ohjelmiston oikea toiminta varmistetaan
+testaamalla projektin aikana: millaisia testauksia tehdään ja missä vaiheessa.
+Testauksen tarkemmat sisällöt ja testisuoritusten tulosten raportit kirjataan
+erillisiin dokumentteihin.
+
+Tänne kirjataan myös lopuksi järjestelmän tunnetut ongelmat, joita ei ole korjattu.
+
+## Asennustiedot
+
+Järjestelmän asennus on syytä dokumentoida kahdesta näkökulmasta:
+
+-   järjestelmän kehitysympäristö: miten järjestelmän kehitysympäristön saisi
+    rakennettua johonkin toiseen koneeseen
+
+-   järjestelmän asentaminen tuotantoympäristöön: miten järjestelmän saisi
+    asennettua johonkin uuteen ympäristöön.
+
+Asennusohjeesta tulisi ainakin käydä ilmi, miten käytettävä tietokanta ja
+käyttäjät tulee ohjelmistoa asentaessa määritellä (käytettävä tietokanta,
+käyttäjätunnus, salasana, tietokannan luonti yms.).
+
+## Käynnistys- ja käyttöohje
+
+Tyypillisesti tässä riittää kertoa ohjelman käynnistykseen tarvittava URL sekä
+mahdolliset kirjautumiseen tarvittavat tunnukset. Jos järjestelmän
+käynnistämiseen tai käyttöön liittyy joitain muita toimenpiteitä tai toimintajärjestykseen liittyviä asioita, nekin kerrotaan tässä yhteydessä.
+
+Usko tai älä, tulet tarvitsemaan tätä itsekin, kun tauon jälkeen palaat
+järjestelmän pariin !
+
+
