@@ -81,12 +81,9 @@ Jatkossa järjestelmään voidaan lisätä verkkokauppa.
 Linkki käyttöliittymän näkymiin: https://www.figma.com/design/zVIZzCBoQg3RqEqrGYyHpp/TicketGuru?node-id=0-1&t=rLzlFhLt2YrBquWw-1
 
 
-
-
-
 ## Tietokanta
 
-**Paikka kaaviolle**
+![Ohjelmistoprojekti tietokanta](https://github.com/user-attachments/assets/94c26460-4c2a-4013-9ac3-350dbce91c02)
 
 
 
@@ -963,16 +960,6 @@ tapahtuman id
 **Yhteydet ja kommunikointi**
 -	Backend ja frontend ovat yhteydessä JSON-muotoisten HTTP-pyyntöjen ja -vastausten avulla REST-rajapintojen kautta
 -	Backend hyödyntää JPA:ta ja Hibernatea tietokantakyselyiden ja objektien välisten yhteyksien hallintaan sekä tiedon tallentamiseen tietokantaan
-
-### **Backend rakenne**
-- Controller-kerros ottaa vastaan HTTP-pyynnöt ja välittää ne joko service-kerrokseen tai suoraan repository-kerrokseen.
-- Service-kerros sisältää liiketoimintalogiikan myyntitapahtumien yhteydessä. Se luo myyntitapahtuman ja liput sekä liittää liput myyntitapahtumaan.
-- Repository-kerros vastaa tietojen hakemisesta ja tallentamisesta tietokantaan.
-
-DTO-luokkia (Data Transfer Object) käytetään myyntitapahtumien yhteydessä siirtämään vain tarpeellinen tieto kerrosten välillä. DTO-luokkien avulla voidaan luoda myyntitapahtuma ja siihen kuuluvat liput yhdellä HTTP-pyynnöllä.
--	SalesTransactionRequestDTO – Kuvaa uuden myyntitapahtuman tiedot sekä siihen kuuluvat lippuostot
--	TicketPurchaseRequestDTO – Kuvaa ostettavien lippujen tiedot
--	SalesTransactionResponseDTO – Myyntitapahtuman luonnissa palautettava vastaus, joka sisältää luodut liput ja myyntitapahtuman tiedot
 
 
 ## Turvallisuus
