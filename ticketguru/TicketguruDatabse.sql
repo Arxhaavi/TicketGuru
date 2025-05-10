@@ -49,6 +49,20 @@
          ON DELETE SET NULL
  );
 
+ CREATE TABLE eventtickettype (
+ eventtickettypeid BIGSERIAL PRIMARY KEY,
+ tickettypeid BIGINT NOT NULL,
+ event_id BIGINT NOT NULL,
+ price DOUBLE PRECISION NOT NULL,
+    CONSTRAINT fk_tickettype
+        FOREIGN KEY (tickettypeid)
+        REFERENCES tickettype(tickettypeid)
+        ON DELETE SET NULL,
+    CONSTRAINT fk_event
+        FOREIGN KEY (event_id)
+        REFERENCES event(event_id)
+        ON DELETE SET NULL
+
  CREATE TABLE appuser (
      id BIGSERIAL PRIMARY KEY,
      username VARCHAR(100) NOT NULL,
@@ -58,8 +72,7 @@
  CREATE TABLE ticket (
      ticket_id BIGSERIAL PRIMARY KEY,
      ticketused BOOLEAN NOT NULL DEFAULT FALSE,
-     price DOUBLE PRECISION NOT NULL,
-     code VARCHAR(250) NOT NULL,  
+     code VARCHAR(16) NOT NULL,  
      transactionid BIGINT NOT NULL,
      tickettypeid BIGINT NOT NULL,
      event_id BIGINT NOT NULL,
@@ -96,7 +109,13 @@
      ('Eläkeläinen'),
      ('Opiskelija');
 
- INSERT INTO Ticket (tickettypeid, event_id, price)
+ INSERT INTO Ticket (tickettypeid, event_id, code)
  VALUES
-     (1, 1, 100.0),
-     (2, 1, 120.0);
+     (1, 1, 'abcdefgas1234051'),
+     (2, 1, '98f3hf7asforWRj3');
+
+INSERT INTO AppUser (username, passwordhash, role)
+VALUES
+    ('admin', '$2a$10$YAvqdDch33w5BecjHl6WP.LjpNaYy9jQlTcE.Krl3ib7VvzRiKUta', 'ROLE_ADMIN'),
+    ('user', '$2a$10$4XXGNu904amNx2Q0tPL4OOZiLP012ULGVI2a8Em4SAJGCtQG1WBJu', 'ROLE_USER'),
+    

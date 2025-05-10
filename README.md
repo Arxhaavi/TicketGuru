@@ -995,25 +995,26 @@ tapahtuman luonnista lipunmyyntiin.
 
 ## Asennustiedot
 
-Järjestelmän asennus on syytä dokumentoida kahdesta näkökulmasta:
+**Kehitysympäristön asennusta varten tarvittavat työkalut:**
+- Java 17
+- Koodieditori (esim. VSCode)
+- Springboot
 
--   järjestelmän kehitysympäristö: miten järjestelmän kehitysympäristön saisi
-    rakennettua johonkin toiseen koneeseen
+Kun työkalut on asennettu, projektin voi kloonata github-repositoriosta.
+Kehitysympäristössä pitää varmistaa että `spring.profiles.active=dev` joka käyttää h2-tietokantaa testausta varten on aktiivinen `application.properties` tiedostossa.
 
--   järjestelmän asentaminen tuotantoympäristöön: miten järjestelmän saisi
-    asennettua johonkin uuteen ympäristöön.
 
-Asennusohjeesta tulisi ainakin käydä ilmi, miten käytettävä tietokanta ja
-käyttäjät tulee ohjelmistoa asentaessa määritellä (käytettävä tietokanta,
-käyttäjätunnus, salasana, tietokannan luonti yms.).
+**Järjestelmän asentaminen tuotantoympäristöön:**
+
+Projektin tuotantoympäristössä ajamista varten tarvittavat asetukset löytyvät `Dockerfile`-tiedostosta. Tuotantoympäristössä pitää varmistaa että `spring.profiles.active=rahti` on aktivoitu.
+
+Järjestelmä käyttää PostgreSQL-tietokantaa, johon yhdistämiseen tarvittavat tiedot löytyvät `application-rahti.properties`-tiedostosta. Kyseisestä tiedostosta löytyvät muuttujat pitää asettaa tuotantoympäristön ympäristömuuttujiin. Tietokannan alustamista varten löytyvät luontilauseet löytyvät `TicketguruDatabase.sql`-tiedostosta. Luontilauseiden yhteydessä tietokantaan ajetaan esimerkkidataa, sekä `user` ja `admin` käyttäjät. Käyttäjiä voi lisätä luomalla uuden käyttäjän `AppUser`-tauluun.
+
 
 ## Käynnistys- ja käyttöohje
 
-Tyypillisesti tässä riittää kertoa ohjelman käynnistykseen tarvittava URL sekä
-mahdolliset kirjautumiseen tarvittavat tunnukset. Jos järjestelmän
-käynnistämiseen tai käyttöön liittyy joitain muita toimenpiteitä tai toimintajärjestykseen liittyviä asioita, nekin kerrotaan tässä yhteydessä.
+https://ticket-guru-git1-ticketguru-1.2.rahtiapp.fi
 
-Usko tai älä, tulet tarvitsemaan tätä itsekin, kun tauon jälkeen palaat
-järjestelmän pariin !
+Kirjautumista varten käytettävät tunnukset ovat `user` ja `admin`
 
 
