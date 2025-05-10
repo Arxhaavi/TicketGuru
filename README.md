@@ -955,7 +955,7 @@ tapahtuman id
 
 **Frontend**
 -	Teknologia: ReactJS
--	Sijainti: 
+-	Sijainti: lokaalisti
 -	Frontend-demoa käytetään myyntitapahtumien luomisen demonstrointiin 
 
 
