@@ -972,13 +972,26 @@ Käyttäjien oikeudet perustuvat rooleihin. Admin-käyttäjällä on enemmän ha
 Kehitysvaiheessa CORS on sallittu kaikista lähteistä, jotta mahdollistetaan sujuva front end-kehitys. 
 
 ## Testaus
+Järjestelmän toimintoja on testattu eri tason testeillä, joilla on varmistettu
+järjestelmän kokonaisvaltainen toiminta. Testit sisältävät yksikkötestejä,
+integraatiotestejä, sekä end-to-end testejä. Järjestelmän testit löytyvät Test-paketista
 
-Tässä kohdin selvitetään, miten ohjelmiston oikea toiminta varmistetaan
-testaamalla projektin aikana: millaisia testauksia tehdään ja missä vaiheessa.
-Testauksen tarkemmat sisällöt ja testisuoritusten tulosten raportit kirjataan
-erillisiin dokumentteihin.
+**Yksikkötestit:** 
+Järjestelmän yksikkötesteillä on testattu entiteettiluokkien toimintaa erillään
+muusta järjestelmästä. Erityisesti on keskitytty testaamaan entiteettiluokkien
+validointisääntöjä, joilla varmistetaan että entiteettien attribuutit noudattavat
+validointilogiikkaa odotetulla tavalla.
 
-Tänne kirjataan myös lopuksi järjestelmän tunnetut ongelmat, joita ei ole korjattu.
+**Integraatiotestaus:** 
+Järjestelmän integraatiotesteillä on testattu, että järjestelmän repositoriorajapinnat
+toimivat yhdessä tietokannan kanssa. Näillä testeillä varmistetaan että järjestelmä
+toimii odotetulla tavalla tietokantatasolla.
+
+**End-to-end testaus:** 
+Järjestelmän end-to-end testit testaavat koko järjestelmän toimintaa käyttäjän näkökulmasta.
+Pääasiassa järjestelmää on end-to-end testattu niin, että järjestelmä toimii kokonaisvaltaisesti
+tapahtuman luonnista lipunmyyntiin.
+
 
 ## Asennustiedot
 
