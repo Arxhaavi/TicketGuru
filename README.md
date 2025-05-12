@@ -514,10 +514,11 @@ tapahtuman id
 
 **Vastauksen sisältö (Response body):**
 ```json
-{
-        "transactionId": 1,
-        "transactionTime": "2025-03-10T16:46:16.858183",
-        "sum": 25.0,
+[
+      {
+        "transactionId": 2,
+        "transactionTime": "2025-05-12T12:29:32.278966",
+        "sum": 0.0,
         "tickets": [
             {
                 "ticketType": {
@@ -526,10 +527,11 @@ tapahtuman id
                 },
                 "event": {
                     "name": "Jalkapallo-ottelu",
-                    "description": "Suomen maajoukkueen peli",
-                    "startTime": "2025-06-15",
-                    "endTime": "2025-06-15",
+                    "description": "Vuoden suurin juhlatapahtuma",
+                    "startTime": "2025-06-15T18:15:00",
+                    "endTime": "2025-06-15T20:15:00",
                     "location": {
+                        "locationId": 1,
                         "name": "Tampere Arena",
                         "streetAddress": "Hämeenkatu 30, Tampere",
                         "postalcode": {
@@ -537,17 +539,84 @@ tapahtuman id
                             "city": "Tampere",
                             "country": "Suomi"
                         },
-                        "capacity": 5000,
-                        "location_Id": 1
+                        "capacity": 5000
                     },
                     "ticketCount": 2000,
+                    "eventTicketTypes": [
+                        {
+                            "eventTicketTypeId": 1,
+                            "ticketType": {
+                                "ticketTypeId": 1,
+                                "ticketType": "Eläkeläinen"
+                            },
+                            "price": 120.0
+                        },
+                        {
+                            "eventTicketTypeId": 2,
+                            "ticketType": {
+                                "ticketTypeId": 2,
+                                "ticketType": "Opiskelija"
+                            },
+                            "price": 150.0
+                        }
+                    ],
+                    "endTimeAfterStartTime": true,
                     "event_Id": 1
                 },
                 "ticketUsed": false,
-                "price": 25.0,
-                "ticketId": 5
-            }]
-}
+                "code": "vUobjRhc9v9Mu3xC",
+                "ticketId": 3
+            },
+            {
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "event": {
+                    "name": "Jalkapallo-ottelu",
+                    "description": "Vuoden suurin juhlatapahtuma",
+                    "startTime": "2025-06-15T18:15:00",
+                    "endTime": "2025-06-15T20:15:00",
+                    "location": {
+                        "locationId": 1,
+                        "name": "Tampere Arena",
+                        "streetAddress": "Hämeenkatu 30, Tampere",
+                        "postalcode": {
+                            "postalcode": "33100",
+                            "city": "Tampere",
+                            "country": "Suomi"
+                        },
+                        "capacity": 5000
+                    },
+                    "ticketCount": 2000,
+                    "eventTicketTypes": [
+                        {
+                            "eventTicketTypeId": 1,
+                            "ticketType": {
+                                "ticketTypeId": 1,
+                                "ticketType": "Eläkeläinen"
+                            },
+                            "price": 120.0
+                        },
+                        {
+                            "eventTicketTypeId": 2,
+                            "ticketType": {
+                                "ticketTypeId": 2,
+                                "ticketType": "Opiskelija"
+                            },
+                            "price": 150.0
+                        }
+                    ],
+                    "endTimeAfterStartTime": true,
+                    "event_Id": 1
+                },
+                "ticketUsed": false,
+                "code": "T20EzqI1CPDPNUhh",
+                "ticketId": 4
+            }
+        ]
+   }
+]
 ```
 
 # Hae myyntitapahtuma id:n perusteella
@@ -566,10 +635,11 @@ tapahtuman id
 
 **Vastauksen sisältö (Response body):**
 ```json
-{
-  "transactionId": 1,
-        "transactionTime": "2025-03-10T16:46:16.858183",
-        "sum": 25.0,
+[
+      {
+        "transactionId": 2,
+        "transactionTime": "2025-05-12T12:29:32.278966",
+        "sum": 0.0,
         "tickets": [
             {
                 "ticketType": {
@@ -578,10 +648,11 @@ tapahtuman id
                 },
                 "event": {
                     "name": "Jalkapallo-ottelu",
-                    "description": "Suomen maajoukkueen peli",
-                    "startTime": "2025-06-15",
-                    "endTime": "2025-06-15",
+                    "description": "Vuoden suurin juhlatapahtuma",
+                    "startTime": "2025-06-15T18:15:00",
+                    "endTime": "2025-06-15T20:15:00",
                     "location": {
+                        "locationId": 1,
                         "name": "Tampere Arena",
                         "streetAddress": "Hämeenkatu 30, Tampere",
                         "postalcode": {
@@ -589,17 +660,84 @@ tapahtuman id
                             "city": "Tampere",
                             "country": "Suomi"
                         },
-                        "capacity": 5000,
-                        "location_Id": 1
+                        "capacity": 5000
                     },
                     "ticketCount": 2000,
+                    "eventTicketTypes": [
+                        {
+                            "eventTicketTypeId": 1,
+                            "ticketType": {
+                                "ticketTypeId": 1,
+                                "ticketType": "Eläkeläinen"
+                            },
+                            "price": 120.0
+                        },
+                        {
+                            "eventTicketTypeId": 2,
+                            "ticketType": {
+                                "ticketTypeId": 2,
+                                "ticketType": "Opiskelija"
+                            },
+                            "price": 150.0
+                        }
+                    ],
+                    "endTimeAfterStartTime": true,
                     "event_Id": 1
                 },
                 "ticketUsed": false,
-                "price": 25.0,
-                "ticketId": 5
-            }]
-}
+                "code": "vUobjRhc9v9Mu3xC",
+                "ticketId": 3
+            },
+            {
+                "ticketType": {
+                    "ticketTypeId": 2,
+                    "ticketType": "Opiskelija"
+                },
+                "event": {
+                    "name": "Jalkapallo-ottelu",
+                    "description": "Vuoden suurin juhlatapahtuma",
+                    "startTime": "2025-06-15T18:15:00",
+                    "endTime": "2025-06-15T20:15:00",
+                    "location": {
+                        "locationId": 1,
+                        "name": "Tampere Arena",
+                        "streetAddress": "Hämeenkatu 30, Tampere",
+                        "postalcode": {
+                            "postalcode": "33100",
+                            "city": "Tampere",
+                            "country": "Suomi"
+                        },
+                        "capacity": 5000
+                    },
+                    "ticketCount": 2000,
+                    "eventTicketTypes": [
+                        {
+                            "eventTicketTypeId": 1,
+                            "ticketType": {
+                                "ticketTypeId": 1,
+                                "ticketType": "Eläkeläinen"
+                            },
+                            "price": 120.0
+                        },
+                        {
+                            "eventTicketTypeId": 2,
+                            "ticketType": {
+                                "ticketTypeId": 2,
+                                "ticketType": "Opiskelija"
+                            },
+                            "price": 150.0
+                        }
+                    ],
+                    "endTimeAfterStartTime": true,
+                    "event_Id": 1
+                },
+                "ticketUsed": false,
+                "code": "T20EzqI1CPDPNUhh",
+                "ticketId": 4
+            }
+        ]
+   }
+]
 ```
 
 # Luo uusi myyntitapahtuma
@@ -615,9 +753,9 @@ tapahtuman id
 **Toimintopyynnön sisältö (Request body):** 
 ```json
 {
-  "tickets": [
-        { "eventId": 1, "price": 20.0, "ticketTypeId": 1, "count": 2 },
-        { "eventId": 1, "price": 50.0, "ticketTypeId": 2, "count": 2 }
+    "tickets": [
+        { "eventId": 1, "ticketTypeId": 1, "count":  1},
+        { "eventId": 1, "ticketTypeId": 2, "count": 2 }
     ]
 }
 ```
@@ -627,14 +765,13 @@ tapahtuman id
 **Vastauksen sisältö (Response body):**
 ```json
 {
-    "salesTransactionId": 4,
+    "salesTransactionId": 3,
     "ticketIds": [
-        11,
-        12,
-        13,
-        14
+        6,
+        7,
+        8
     ],
-    "totalSum": 140.0
+    "transactionTime": "2025-05-12T12:34:31.5395223"
 }
 ```
 
